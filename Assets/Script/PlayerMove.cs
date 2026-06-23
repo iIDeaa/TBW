@@ -9,14 +9,14 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = moveInput * moveSpeed;
     }
@@ -24,6 +24,15 @@ public class PlayerMove : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        
+
+        // เช็คว่ามีการกดปุ่มเดินไหม
+        if (moveInput != Vector2.zero)
+        {
+            animator.SetBool("iswalking", true);
+        }
+        else
+        {
+            animator.SetBool("iswalking", false);
+        }
     }
 }
