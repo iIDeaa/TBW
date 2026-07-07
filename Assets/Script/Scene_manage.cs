@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Scene_manage : MonoBehaviour
 {
-  public void OnStartClick()
+    Audio_Manager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<Audio_Manager>();
+    }
+
+    public void OnStartClick()
     {
         SceneManager.LoadScene("SampleScene");
     }
