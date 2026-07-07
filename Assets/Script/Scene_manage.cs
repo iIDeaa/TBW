@@ -14,7 +14,7 @@ public class Scene_manage : MonoBehaviour
 
     public void OnStartClick()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("(3)Cutscene_GameStart");
     }
 
     public void OnExitClick()
