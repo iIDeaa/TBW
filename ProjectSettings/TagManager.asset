@@ -42,3 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Gound
+    uniqueID: 842695923
+    locked: 0
+  - name: Red
+    uniqueID: 776302393
+    locked: 0
