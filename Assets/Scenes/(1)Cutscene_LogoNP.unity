@@ -158,7 +158,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -949,6 +949,7 @@ MonoBehaviour:
   musicSource: {fileID: 1641957383}
   SFXSource: {fileID: 798811128}
   background: {fileID: 8300000, guid: 9a051f14ca39fd14fa3e61f81cec4fb0, type: 3}
+  Setting_but: {fileID: 0}
 --- !u!4 &1545292339
 Transform:
   m_ObjectHideFlags: 0
@@ -1193,7 +1194,7 @@ MonoBehaviour:
   nextMode: 1
   nextTimeline: {fileID: 0}
   nextSceneAsset: {fileID: 102900000, guid: 26e9e0bb1db711e40878bd0636ca4b5d, type: 3}
-  nextSceneName: StartMenu
+  nextSceneName: (2)StartMenu
   delayBeforeNext: 9
 --- !u!4 &1922201576
 Transform:
