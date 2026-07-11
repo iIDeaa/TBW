@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NPC
+  - Item
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -11,12 +14,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - NPC
+  - Interactable
+  - Obstacle
+  - Ground
+  - Trigger
   - 
   - 
   - 
@@ -40,4 +43,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 1176704931
+    locked: 0
+  - name: WalkInfront
+    uniqueID: 3724500999
+    locked: 0
+  - name: Collision
+    uniqueID: 2084856509
+    locked: 0
+  - name: Player
+    uniqueID: 3529631451
+    locked: 0
+  - name: WalkBehind
+    uniqueID: 2801187881
+    locked: 0
+  - name: Decorate
+    uniqueID: 1803233857
     locked: 0

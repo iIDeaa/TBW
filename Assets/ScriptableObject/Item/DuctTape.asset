@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b3c77969c84e846a807b8a0ad103f5, type: 3}
+  m_Name: DuctTape
+  m_EditorClassIdentifier: 
+  itemName: Duct tape
+  icon: {fileID: 21300000, guid: 76ca54071975b5341b8ec18c2519baa5, type: 3}
+  stackable: 1
+  maxStack: 99

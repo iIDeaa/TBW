@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "NewDialogue", menuName = "Game/Dialogue")]
+public class DialogueData : ScriptableObject
+{
+    [System.Serializable]
+    public class Line
+    {
+        public string speaker;
+        [TextArea] public string text;
+        public Sprite portrait; // 🔥 เพิ่มตรงนี้
+    }
+
+    public Line[] lines;
+}
