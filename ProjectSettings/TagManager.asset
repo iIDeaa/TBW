@@ -42,9 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Gound
-    uniqueID: 842695923
+  - name: Ground
+    uniqueID: 580475371
     locked: 0
-  - name: Red
-    uniqueID: 776302393
+  - name: Sky
+    uniqueID: 2275179891
     locked: 0
