@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/(2)StartMenu.unity
     guid: 26e9e0bb1db711e40878bd0636ca4b5d
   - enabled: 1
-    path: Assets/Scenes/(3)Cutscene_GameStart.unity
+    path: Assets/Scenes/(3)World.unity
+    guid: ea02794079868a141a189463843d5af2
+  - enabled: 1
+    path: Assets/Scenes/(4)Cutscene_GameStart.unity
     guid: a1337fff1bef4664ba40e8aa38cb789b
   m_configObjects: {}
