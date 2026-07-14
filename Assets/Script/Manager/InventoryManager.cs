@@ -1,74 +1,150 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-     public InventoryUI inventoryUI;
+    public static InventoryManager Instance;
 
+    
     public List<InventorySlot> slots = new List<InventorySlot>();
-
     public int maxSlots = 20;
+    
 
-    public ItemData scrap;
+    // 🔥 Event
+    public static event Action<ItemData, int> OnItemAdded;
+    
+    public static event System.Action OnItemRemoved;
+    public bool isLoading = false;
 
 
     void Awake()
     {
-        for (int i = 0; i < maxSlots; i++)
+        if (Instance == null)
         {
-            slots.Add(new InventorySlot());
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 🔥 สำคัญ
         }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        if (slots.Count == 0)
+        {
+            for (int i = 0; i < maxSlots; i++)
+            {
+                slots.Add(new InventorySlot());
+            }
+        }
+        
     }
-
-
-    void Update()
+    public void AddItem(ItemData item, int amount)
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (item == null)
         {
-            Debug.Log("Scrap value = " + scrap);
+            Debug.LogError("ไม่มี ItemData ส่งเข้ามา");
+            return;
+        }
 
-            AddItem(scrap);
+        Debug.Log("Add : " + item.itemName + " x" + amount);
+
+        // 🔥 stack
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.item == item && item.stackable)
+            {
+                slot.amount += amount;
+                if (!isLoading)
+                OnItemAdded?.Invoke(item, amount);
+                return;
+            }
+        }
+
+        // 🔥 new slot
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.item == null)
+            {
+                slot.item = item;
+                slot.amount = amount;
+                if (!isLoading)
+                OnItemAdded?.Invoke(item, amount);
+                return;
+            }
         }
     }
-
-
     public void AddItem(ItemData item)
     {
-    if(item == null)
-    {
-        Debug.LogError("ไม่มี ItemData ส่งเข้ามา");
-        return;
+        AddItem(item, 1);
     }
 
-    Debug.Log("Add : " + item.itemName);
 
-
-    foreach (InventorySlot slot in slots)
+    public bool RemoveItem(ItemData item, int amount)
     {
-        if(slot.item == item && item.stackable)
+        int remaining = amount;
+
+        foreach (var slot in slots)
         {
-            slot.amount++;
-            inventoryUI.RefreshUI();
-            return;
+            if (slot.item == item)
+            {
+                if (slot.amount >= remaining)
+                {
+                    slot.amount -= remaining;
+                    
+
+                    if (slot.amount == 0)
+                        slot.item = null;
+
+                    OnItemRemoved?.Invoke();
+                    return true;
+                }
+                else
+                {
+                    remaining -= slot.amount;
+                    slot.item = null;
+                    slot.amount = 0;
+
+                    OnItemRemoved?.Invoke();
+                }
+            }
         }
+
+        return false; // ของไม่พอ
     }
-
-
-    foreach (InventorySlot slot in slots)
+    public void ClearInventory()
     {
-        if(slot.item == null)
+        foreach (var slot in slots)
         {
-            slot.item = item;
-            slot.amount = 1;
-
-            inventoryUI.RefreshUI();
-            return;
+            slot.item = null;
+            slot.amount = 0;
         }
-    }
-    
+
+        if (!isLoading)
+        OnItemRemoved?.Invoke();
+
+        Debug.Log("Inventory Cleared");
     }
 
 
-        
+    public bool HasItem(ItemData item, int amount)
+    {
+        int count = 0;
+
+        foreach (var slot in slots)
+        {
+            if (slot.item == item)
+            {
+                count += slot.amount;
+            }
+        }
+
+        return count >= amount;
+    }
+    public void ForceRefreshUI()
+    {
+        OnItemRemoved?.Invoke();
+    }
 }

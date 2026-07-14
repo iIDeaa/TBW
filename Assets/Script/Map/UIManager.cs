@@ -32,6 +32,15 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        // เช็ค Unlock ก่อน
+        UnlockByQuest unlock = zonePanels[index].GetComponent<UnlockByQuest>();
+
+        if (unlock != null && !unlock.IsUnlockedPublic())
+        {
+            Debug.Log("Zone ยังไม่ปลดล็อก");
+            return;
+        }
+
         zoneSelectPanel.SetActive(false);
 
         foreach (GameObject panel in zonePanels)

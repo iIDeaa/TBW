@@ -5,9 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class Scene_manage : MonoBehaviour
 {
+    void Start()
+    {
+        if (FadeManager.HasInstance())
+        {
+            StartCoroutine(FadeManager.Instance.FadeInRoutine());
+        }
+    }
+    
   public void OnStartClick()
     {
-        SceneManager.LoadScene("SampleScene");
+        FadeManager.Instance.FadeToScene("SampleScene");
+        
+        
     }
 
     public void OnExitClick()

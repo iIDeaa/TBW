@@ -3,14 +3,27 @@ using UnityEngine.UI;
 
 public class UnlockByQuest : MonoBehaviour
 {
-    [Header("Leave Empty = Unlock from Start")]
     public string requiredQuestID;
 
-    [Header("UI")]
     public Button button;
     public GameObject lockIcon;
 
     void Start()
+    {
+        UpdateState();
+    }
+
+    private void OnEnable()
+    {
+        QuestManager.OnQuestCompleted += OnQuestUpdated;
+    }
+
+    private void OnDisable()
+    {
+        QuestManager.OnQuestCompleted -= OnQuestUpdated;
+    }
+
+    void OnQuestUpdated(string questId)
     {
         UpdateState();
     }
@@ -28,7 +41,6 @@ public class UnlockByQuest : MonoBehaviour
 
     bool IsUnlocked()
     {
-        // ถ้าไม่กำหนด Quest = ปลดล็อกตั้งแต่แรก
         if (string.IsNullOrEmpty(requiredQuestID))
             return true;
 
@@ -37,6 +49,10 @@ public class UnlockByQuest : MonoBehaviour
         if (quest == null)
             return false;
 
-        return quest.state == QuestState.Finished;
+        return quest.state == QuestState.Completed || quest.state == QuestState.Finished;
+    }
+    public bool IsUnlockedPublic()
+    {
+        return IsUnlocked();
     }
 }

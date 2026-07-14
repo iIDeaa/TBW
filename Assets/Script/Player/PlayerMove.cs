@@ -10,9 +10,9 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
-    private Dictionary<QuestData, QuestState> questStates = new Dictionary<QuestData, QuestState>();
-    public List<QuestData> allQuests;
-    public int currentQuestStep = 1;
+    
+    
+    
 
     void Start()
     {
@@ -39,65 +39,4 @@ public class PlayerMove : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
     
-
-    
-
-    public QuestState GetQuestState(QuestData quest)
-    {
-        if (questStates.ContainsKey(quest))
-            return questStates[quest];
-
-        return QuestState.NotStarted;
-    }
-
-    public void StartQuest(QuestData quest)
-    {
-        if (quest.questOrder != currentQuestStep)
-            return;
-
-        if (!questStates.ContainsKey(quest))
-        {
-            questStates.Add(quest, QuestState.InProgress);
-
-             
-        }
-    }
-
-    
-    public void FinishQuest(QuestData quest)
-    {
-        if (questStates.ContainsKey(quest))
-        {
-            questStates[quest] = QuestState.Finished;
-
-            
-            currentQuestStep++;
-        }
-    }
-
-    
-    public void CompleteQuest(QuestData quest)
-    {
-        if (questStates.ContainsKey(quest))
-        {
-            questStates[quest] = QuestState.Completed;
-        }
-    }
-    public QuestData GetCurrentQuest()
-    {
-        foreach (QuestData quest in allQuests)
-        {
-            if (quest.questOrder == currentQuestStep)
-            {
-                QuestState state = GetQuestState(quest);
-
-                if (state == QuestState.InProgress || state == QuestState.Completed)
-                {
-                    return quest;
-                }
-            }
-        }
-
-        return null;
-    }
 }

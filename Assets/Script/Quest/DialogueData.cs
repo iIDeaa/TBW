@@ -10,7 +10,7 @@ public class DialogueData : ScriptableObject
     {
         public string speaker;
         [TextArea] public string text;
-        public Sprite portrait; // 🔥 เพิ่มตรงนี้
+        public Sprite portrait; 
     }
 
     public Line[] lines;

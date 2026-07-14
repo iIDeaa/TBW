@@ -16,10 +16,15 @@ MonoBehaviour:
   questId: 002
   title: hii
   description: wa
-  requiredAmount: 0
-  requiredItem: 
+  questType: 1
+  requirements:
+  - item: {fileID: 11400000, guid: b9c07b9f002eff54c92d10103571f61a, type: 2}
+    amount: 0
+  - item: {fileID: 11400000, guid: 4b249ea43affc2349aa9172cb56ced25, type: 2}
+    amount: 1
+  minigameId: 
   rewardGold: 0
   startDialogue: {fileID: 11400000, guid: 72d703260c406974ab2aa4d8467ff97a, type: 2}
   inProgressDialogue: {fileID: 11400000, guid: d9beb0d742cd89849bd7cf7114cbdb98, type: 2}
   completeDialogue: {fileID: 11400000, guid: d833d238afa4326448e076377e81eff2, type: 2}
-  nextQuestID: 
+  nextQuestID: 003

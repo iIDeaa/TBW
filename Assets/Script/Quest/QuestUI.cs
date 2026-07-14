@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class QuestUI : MonoBehaviour
 {
-    [Header("Player")]
-    public PlayerMove player;
+    
 
     [Header("Quest Button")]
     public Button questButton;
@@ -31,11 +30,11 @@ public class QuestUI : MonoBehaviour
 
     public void RefreshQuest()
     {
-        currentQuest = player.GetCurrentQuest();
+        currentQuest = QuestManager.Instance.GetCurrentQuestData();
 
         detailPanel.SetActive(false);
 
-        if(currentQuest == null)
+        if (currentQuest == null)
         {
             questButtonText.text = "";
             questButton.interactable = false;
@@ -48,7 +47,6 @@ public class QuestUI : MonoBehaviour
 
    public void ShowDetail()
     {
-        Debug.Log("Detail");
         if(currentQuest == null)
             return;
 
@@ -62,5 +60,28 @@ public class QuestUI : MonoBehaviour
             descriptionText.text = currentQuest.description;
             rewardText.text = "Reward : " + currentQuest.rewardGold + " Gold";
         }
+    }
+    void OnEnable()
+    {
+        QuestManager.OnQuestStepChanged += OnQuestChanged;
+        QuestManager.OnQuestStarted += OnQuestChangedSimple;
+        QuestManager.OnQuestCompleted += OnQuestChangedSimple;
+    }
+
+    void OnDisable()
+    {
+        QuestManager.OnQuestStepChanged -= OnQuestChanged;
+        QuestManager.OnQuestStarted -= OnQuestChangedSimple;
+        QuestManager.OnQuestCompleted -= OnQuestChangedSimple;
+    }
+
+    void OnQuestChanged(int step)
+    {
+        RefreshQuest();
+    }
+
+    void OnQuestChangedSimple(string id)
+    {
+        RefreshQuest();
     }
 }

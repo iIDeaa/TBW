@@ -18,6 +18,16 @@ public class TrashManager : MonoBehaviour
     private int remainRoundItem = 0;
 
     private int currentIndex = 0;
+    public ItemData rewardItem;
+    [Header("Result")]
+    public float elapsedTime;
+    public int correctCount;
+    public int wrongCount;
+    public int rewardAmount;
+
+    private bool isPlaying = false;
+    public TrashResultUI resultUI;
+    
 
     private void Awake()
     {
@@ -31,6 +41,16 @@ public class TrashManager : MonoBehaviour
         PrepareItems();
 
         SpawnNextRound();
+
+        elapsedTime = 0f;
+        isPlaying = true;
+    }
+    void Update()
+    {
+        if (isPlaying)
+        {
+            elapsedTime += Time.deltaTime;
+        }
     }
     void PrepareItems()
     {
@@ -73,24 +93,53 @@ public class TrashManager : MonoBehaviour
             }
         }
     }
-    void EndGame()
+
+    void GiveReward()
     {
-        Debug.Log("MiniGame Complete");
+        rewardAmount = score / 4;
+
+        for (int i = 0; i < rewardAmount; i++)
+        {
+            InventoryManager.Instance.AddItem(rewardItem);
+        }
+
+        Debug.Log("ได้รับ " + rewardAmount + " ชิ้น");
     }
+    
 
     public void AddScore(int amount)
     {
         score += amount;
-        UpdateScoreUI();
+        correctCount++;
+        UpdateScoreUI();;
     }
     public void MinusScore(int amount)
     {
         score -= amount;
+        wrongCount++;
         UpdateScoreUI();
     }
 
     private void UpdateScoreUI()
     {
         scoreText.text = "" + score;
+    }
+
+    public void Continue()
+    {
+        MinigameManager.Instance.EndMinigame(true);
+    }
+    void EndGame()
+    {
+        isPlaying = false;
+
+        GiveReward();
+
+        resultUI.ShowResult(
+            elapsedTime,
+            correctCount,
+            wrongCount,
+            rewardAmount
+        );
     }
 }

@@ -13,10 +13,10 @@ public class ProgressBar : MonoBehaviour
         {
             fillImage.fillAmount -= decreaseAmount;
 
-            // ไม่ให้ค่าติดลบ
+            
             fillImage.fillAmount = Mathf.Clamp01(fillImage.fillAmount);
 
-            // ถ้าหลอดหมด
+            
             if (fillImage.fillAmount <= 0)
             {
                 Debug.Log("Progress หมดแล้ว!");

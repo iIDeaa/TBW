@@ -1,11 +1,12 @@
+using System.Collections.Generic;
+
 [System.Serializable]
 public class Quest
 {
     public string questID;
     public string questName;
 
-    public int targetAmount;
-    public int currentAmount;
+    public Dictionary<ItemData, int> progress = new Dictionary<ItemData, int>();
 
     public string nextQuestID; // chain ต่อไป
 

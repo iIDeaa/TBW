@@ -19,8 +19,7 @@ public class NPCtalk : MonoBehaviour
     public List<QuestData> quests;
     
 
-    [Header("Player")]
-    public PlayerMove playerMovement;
+    QuestManager qm => QuestManager.Instance;
 
     [Header("Typing")]
     public float typingSpeed = 0.04f;
@@ -33,23 +32,38 @@ public class NPCtalk : MonoBehaviour
     private bool isTalking;
     private bool isTyping;
     private int currentLine;
+    private QuestData pendingQuest;
+    private bool isTurnInPhase = false;
     
 
     private DialogueData.Line[] currentLines;
 
-    void Start()
+    
+    IEnumerator Start()
     {
+        // รอให้ Load เสร็จก่อน
+        yield return new WaitUntil(() =>
+        SaveManager.Instance == null ||
+        SaveManager.Instance.IsLoaded ||
+        !SaveManager.Instance.HasSave()
+    );
+
         dialoguePanel.SetActive(false);
 
         if (prompt != null)
             prompt.SetActive(false);
+
+        MinigameManager.Instance.OnMinigameEnd += OnMinigameFinished;
     }
 
     void Update()
     {
         if (!playerInRange)
             return;
-
+        if (SaveManager.Instance != null &&
+        !SaveManager.Instance.IsLoaded &&
+        SaveManager.Instance.HasSave())
+        return;
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (!isTalking)
@@ -65,51 +79,119 @@ public class NPCtalk : MonoBehaviour
         currentLine = 0;
 
         dialoguePanel.SetActive(true);
-        playerMovement.canMove = false;
+        FindObjectOfType<PlayerMove>().canMove = false;
 
         DialogueData dialogueToUse = null;
-
+        
         QuestData currentQuest = GetAvailableQuest();
+
+        
 
         if (currentQuest != null)
         {
-            QuestState state = playerMovement.GetQuestState(currentQuest);
+            
+            Quest quest = qm.GetQuest(currentQuest.questId);
+            Debug.Log(">>> BEFORE TALK state = " + quest.state);
 
-            if (state == QuestState.NotStarted)
+            //  ยังไม่เริ่ม
+        if (quest.state == QuestState.NotStarted)
+        {
+            dialogueToUse = currentQuest.startDialogue;
+            pendingQuest = currentQuest;
+
+            
+
+            
+
+            if (currentQuest.questType == QuestType.Minigame)
             {
-                dialogueToUse = currentQuest.startDialogue;
-                playerMovement.StartQuest(currentQuest);
+                StartCoroutine(StartMinigameAfterDialogue(currentQuest));
             }
-            else if (state == QuestState.InProgress)
+        }
+
+            //  กำลังทำ
+            else if (quest.state == QuestState.InProgress)
             {
-                dialogueToUse = currentQuest.inProgressDialogue;
-                playerMovement.CompleteQuest(currentQuest);
+                if (currentQuest.questType == QuestType.Collect)
+                {
+                    var inv = InventoryManager.Instance;
+
+                    bool hasAll = true;
+
+                    foreach (var req in currentQuest.requirements)
+                    {
+                        if (!inv.HasItem(req.item, req.amount))
+                        {
+                            hasAll = false;
+                            break;
+                        }
+                    }
+
+                    if (hasAll)
+                    {
+                        // 🔥 มีของครบ → ไป dialogue ส่งของเลย
+                        dialogueToUse = currentQuest.completeDialogue;
+
+                        // mark ว่าจะส่งของหลังคุยจบ
+                        if (pendingQuest == null)
+                        pendingQuest = currentQuest;
+                        isTurnInPhase = true;
+                        
+                    }
+                    else
+                    {
+                        dialogueToUse = currentQuest.inProgressDialogue;
+                    }
+                }
+                else
+                {
+                    dialogueToUse = currentQuest.inProgressDialogue;
+                }
+            
+                if (currentQuest.questType == QuestType.Minigame)
+                {
+                    StartCoroutine(StartMinigameAfterDialogue(currentQuest));
+                    IEnumerator StartMinigameAfterDialogue(QuestData quest)
+                    {
+                        yield return new WaitUntil(() => !isTalking);
+
+                        MinigameManager.Instance.StartMinigame(quest.minigameId);
+                    }
+                }
             }
-            else if (state == QuestState.Completed)
+            //  ทำเสร็จ
+          else if (quest.state == QuestState.Completed)
             {
                 dialogueToUse = currentQuest.completeDialogue;
-                playerMovement.FinishQuest(currentQuest);
+                pendingQuest = currentQuest; // ไป finish ตอน EndDialogue
             }
-            else if (state == QuestState.Finished)
+            //  ทำจบแล้ว
+            else if (quest.state == QuestState.Finished)
             {
                 dialogueToUse = currentQuest.completeDialogue;
             }
         }
         else
         {
-            // 🔥 ไม่มีเควส → ใช้บทพูดทั่วไป
             dialogueToUse = defaultDialogue;
         }
 
         if (dialogueToUse == null)
         {
-            Debug.LogWarning("No dialogue assigned!");
-            return;
+            Debug.LogWarning("Fallback to default dialogue");
+            dialogueToUse = defaultDialogue;
         }
 
-        currentLines = dialogueToUse.lines;
+        
+       
 
+        currentLines = dialogueToUse.lines;
         StartCoroutine(TypeLine());
+    }
+    IEnumerator StartMinigameAfterDialogue(QuestData quest)
+    {
+        yield return new WaitUntil(() => !isTalking);
+        MinigameManager.Instance.StartMinigame(quest.minigameId);
     }
 
     void NextLine()
@@ -153,10 +235,49 @@ public class NPCtalk : MonoBehaviour
 
     void EndDialogue()
     {
+        if (pendingQuest != null)
+        {
+            Quest quest = qm.GetQuest(pendingQuest.questId);
+            if (quest.state == QuestState.NotStarted)
+            {
+                qm.StartQuest(pendingQuest);
+            }
+
+            if (quest != null)
+            {
+                // 🔥 FIX: Talk Quest
+                if (quest.state == QuestState.InProgress &&
+                    pendingQuest.questType == QuestType.Talk)
+                {
+                    Debug.Log("Talk Complete");
+
+                    qm.CompleteQuest(pendingQuest.questId);
+                    qm.FinishQuest(pendingQuest.questId);
+                }
+
+                // Collect
+                else if (quest.state == QuestState.InProgress && isTurnInPhase)
+                {
+                    HandleQuest(pendingQuest);
+                }
+
+                // Completed → Finish
+                else if (quest.state == QuestState.Completed)
+                {
+                    qm.FinishQuest(pendingQuest.questId);
+                }
+            }
+        }
         isTalking = false;
         dialoguePanel.SetActive(false);
 
-        playerMovement.canMove = true;
+        FindObjectOfType<PlayerMove>().canMove = true;
+
+        
+       
+
+        pendingQuest = null;
+        isTurnInPhase = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -185,28 +306,113 @@ public class NPCtalk : MonoBehaviour
     }
     QuestData GetAvailableQuest()
     {
+        Debug.Log("=== Checking Available Quest ===");
+
         foreach (QuestData q in quests)
         {
-            // 🔥 เช็คว่าเป็นลำดับปัจจุบันไหม
-            if (q.questOrder != playerMovement.currentQuestStep)
+            Debug.Log($"Checking Quest {q.questId} | Order {q.questOrder}");
+
+            if (q.questOrder != qm.currentQuestStep)
+            {
+                Debug.Log(" Order not match");
                 continue;
+            }
 
-            QuestState state = playerMovement.GetQuestState(q);
+            Quest quest = qm.GetQuest(q.questId);
 
-            if (state == QuestState.NotStarted)
+            if (quest == null)
+            {
+                Debug.Log(" Quest missing (should not happen)");
+                continue;
+            }
+
+            Debug.Log("State: " + quest.state);
+
+            // 🔥 แก้ตรงนี้
+            if (quest.state == QuestState.NotStarted)
+            {
+                Debug.Log(" HIT NOT STARTED");
                 return q;
+            }
 
-            if (state == QuestState.InProgress)
+            if (quest.state == QuestState.InProgress)
+            {
+                Debug.Log(" In Progress FOUND");
                 return q;
+            }
 
-            if (state == QuestState.Completed)
+            if (quest.state == QuestState.Completed)
+            {
+                Debug.Log(" Completed FOUND");
                 return q;
+            }
         }
 
+        Debug.Log(" No quest found");
         return null;
     }
+    
+    void HandleQuest(QuestData quest)
+    {
+        Debug.Log("HandleQuest called: " + quest.title);
+        //  Talk จบทันที
+        if (quest.questType == QuestType.Talk)
+        {
+            QuestManager.Instance.FinishQuest(quest.questId);
+        }
 
-    // 🔥 หา quest ตัวถัดไปจาก ID
+        // Collect เช็คหลาย item
+        else if (quest.questType == QuestType.Collect)
+        {
+            var inv = InventoryManager.Instance;
+
+            // เช็คว่าครบทุก item ไหม
+            bool hasAll = true;
+
+            foreach (var req in quest.requirements)
+            {
+                if (!inv.HasItem(req.item, req.amount))
+                {
+                    hasAll = false;
+                    break;
+                }
+            }
+
+            if (!hasAll)
+            {
+                Debug.Log("Item not enough");
+                return;
+            }
+
+            // ถ้าครบ ลบทุก item
+            foreach (var req in quest.requirements)
+            {
+                inv.RemoveItem(req.item, req.amount);
+            }
+
+            //จบเควส
+            QuestManager.Instance.FinishQuest(quest.questId);
+
+            Debug.Log("Turn in success");
+        }
+    }
+    void OnMinigameFinished(bool success)
+    {
+        if (!success) return;
+
+        QuestData q = GetAvailableQuest();
+        if (q == null) return;
+
+        Quest quest = qm.GetQuest(q.questId);
+
+        if (quest != null && quest.state == QuestState.InProgress)
+        {
+            qm.CompleteQuest(q.questId);
+        }
+    }
+
+
+    // หา quest ตัวถัดไปจาก ID
     QuestData FindNextQuest(string id)
     {
         QuestData[] allQuests = Resources.LoadAll<QuestData>("");
@@ -218,5 +424,17 @@ public class NPCtalk : MonoBehaviour
         }
 
         return null;
+    }
+
+
+
+    void OnEnable()
+    {
+        
+    }
+
+    void OnDisable()
+    {
+        
     }
 }

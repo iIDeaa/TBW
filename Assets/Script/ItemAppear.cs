@@ -81,15 +81,14 @@ public class ItemAppear : MonoBehaviour
     void PickUp()
     {
         
-        if (inventory != null && itemData != null)
+        if (InventoryManager.Instance != null)
         {
-            inventory.AddItem(itemData);
-
-            Debug.Log("เก็บ : " + itemData.itemName);
+            InventoryManager.Instance.AddItem(itemData);
         }
         else
         {
-            Debug.LogWarning("ยังไม่ได้ใส่ Inventory หรือ ItemData");
+            Debug.LogError("InventoryManager not found!");
+            return;
         }
 
 

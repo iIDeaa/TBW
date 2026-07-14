@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25bc1e898f15264cafa50ab7b77cd0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredQuestID: 002
+  requiredQuestID: 
   button: {fileID: 5985821}
   lockIcon: {fileID: 738043053797156388, guid: 4bac16580dd1bc64d904a188c2224dc2, type: 3}
 --- !u!114 &5985821
@@ -2684,6 +2684,7 @@ GameObject:
   - component: {fileID: 1702322222}
   - component: {fileID: 1702322221}
   - component: {fileID: 1702322220}
+  - component: {fileID: 1702322223}
   m_Layer: 5
   m_Name: Zone2 Button
   m_TagString: Untagged
@@ -2805,6 +2806,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702322218}
   m_CullTransparentMesh: 1
+--- !u!114 &1702322223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702322218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25bc1e898f15264cafa50ab7b77cd0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredQuestID: 2
+  button: {fileID: 1702322220}
+  lockIcon: {fileID: 738043053797156388, guid: 4bac16580dd1bc64d904a188c2224dc2, type: 3}
 --- !u!1 &1752619509
 GameObject:
   m_ObjectHideFlags: 0

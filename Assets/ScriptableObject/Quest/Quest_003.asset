@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddafdfac34a41704c9777e3229134860, type: 3}
-  m_Name: Quest_001
+  m_Name: Quest_003
   m_EditorClassIdentifier: 
-  questOrder: 1
-  questId: 001
-  title: test
-  description: fakkkkk
-  questType: 0
+  questOrder: 3
+  questId: 003
+  title: MiniGame
+  description: 
+  questType: 2
   requirements: []
+  minigameId: TestMinigame
   rewardGold: 0
-  startDialogue: {fileID: 11400000, guid: 5c3a7556754152f44a41a061feeed4db, type: 2}
-  inProgressDialogue: {fileID: 11400000, guid: 4964de2bffdb1ee4ca2867ae246c9bd8, type: 2}
-  completeDialogue: {fileID: 11400000, guid: c3ebaa9066d7ba2429e0dd86b3a6874c, type: 2}
-  nextQuestID: 002
+  startDialogue: {fileID: 11400000, guid: 72d703260c406974ab2aa4d8467ff97a, type: 2}
+  inProgressDialogue: {fileID: 11400000, guid: d9beb0d742cd89849bd7cf7114cbdb98, type: 2}
+  completeDialogue: {fileID: 11400000, guid: d833d238afa4326448e076377e81eff2, type: 2}
+  nextQuestID: 004

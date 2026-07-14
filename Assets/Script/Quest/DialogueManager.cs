@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static event System.Action OnDialogueFinished;
     public static DialogueManager Instance;
 
     private void Awake()
@@ -10,11 +11,16 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void Show(DialogueData dialogue)
+{
+    
+
+    Debug.Log("Show Dialogue"); 
+
+    foreach (var line in dialogue.lines)
     {
-        Debug.Log("Show Dialogue"); // 👈 เพิ่ม
-        foreach (var line in dialogue.lines)
-        {
-            Debug.Log(line.speaker + ": " + line.text);
-        }
+        Debug.Log(line.speaker + ": " + line.text);
     }
+
+    OnDialogueFinished?.Invoke();
+}
 }
