@@ -508,7 +508,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -627,13 +627,19 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -4734321278397168991, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
-    value: {fileID: 1545292337}
   - key: {fileID: 8890649033834332582, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
     value: {fileID: 569390926}
   - key: {fileID: 0}
     value: {fileID: 1510305756}
   - key: {fileID: -3086359463316276057, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
+    value: {fileID: 1510305752}
+  - key: {fileID: -5013865489693818764, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
+    value: {fileID: 569390926}
+  - key: {fileID: -8330848317848566168, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
+    value: {fileID: 1575526623}
+  - key: {fileID: 7415153793698783439, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
+    value: {fileID: 1545292337}
+  - key: {fileID: 2176703220383775012, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
     value: {fileID: 1510305752}
   m_ExposedReferences:
     m_References: []
