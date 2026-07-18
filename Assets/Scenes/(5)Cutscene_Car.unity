@@ -9619,7 +9619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDirector: {fileID: 280995938}
-  nextMode: 0
+  nextMode: 1
   nextTimeline: {fileID: 0}
   nextSceneAsset: {fileID: 102900000, guid: 45d32d793813c624db0774d5fe12697c, type: 3}
   nextSceneName: "(\u0E386)"
