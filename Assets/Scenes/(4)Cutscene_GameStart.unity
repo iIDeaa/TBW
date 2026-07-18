@@ -1916,8 +1916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff1cec5708bf6548a6c1a8bfbca1cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-  nextLevelName: SampleScene
+  nextSceneAsset: {fileID: 102900000, guid: a64ed38243fc37b45b506b248f53247e, type: 3}
+  nextLevelName: (5)Cutscene_Car
 --- !u!61 &1104139980
 BoxCollider2D:
   m_ObjectHideFlags: 0
