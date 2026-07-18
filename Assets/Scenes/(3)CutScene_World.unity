@@ -188,7 +188,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -999,7 +999,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1491688413}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: ade712cc8ce9c4f40a3d7a5f9d87e63d, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -1019,6 +1019,16 @@ PlayableDirector:
     value: {fileID: 1827842776}
   - key: {fileID: -5013865489693818764, guid: 28183c59f2b5d004c961ec57e25de8fc, type: 2}
     value: {fileID: 1052028286}
+  - key: {fileID: -6330356556669716298, guid: ade712cc8ce9c4f40a3d7a5f9d87e63d, type: 2}
+    value: {fileID: 1052028286}
+  - key: {fileID: -1191834004894832986, guid: ade712cc8ce9c4f40a3d7a5f9d87e63d, type: 2}
+    value: {fileID: 1827842776}
+  - key: {fileID: 7386895443034131893, guid: ade712cc8ce9c4f40a3d7a5f9d87e63d, type: 2}
+    value: {fileID: 1205415826}
+  - key: {fileID: 5641188281384978715, guid: ade712cc8ce9c4f40a3d7a5f9d87e63d, type: 2}
+    value: {fileID: 1719648499}
+  - key: {fileID: -6581302752290882180, guid: ade712cc8ce9c4f40a3d7a5f9d87e63d, type: 2}
+    value: {fileID: 1483442956}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1491688415
