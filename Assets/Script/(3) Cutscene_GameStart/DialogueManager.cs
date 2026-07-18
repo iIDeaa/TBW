@@ -38,6 +38,24 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     private Coroutine autoAdvanceCoroutine;
 
+    [Header("Audio Settings")]
+    [Tooltip("ไฟล์เสียงคีย์บอร์ด/เสียงพิมพ์สั้น ๆ")]
+    public AudioClip typingSound;
+    [Tooltip("ความถี่ในการเล่นเสียง (เล่นทุก ๆ กี่ตัวอักษร เช่น 2 คือเล่นตัวเว้นตัว)")]
+    [Range(1, 20)]
+    public int soundFrequency = 2;
+    private Audio_Manager audioManager;
+
+    private void Awake()
+    {
+        // ค้นหา Audio_Manager ในฉากที่มีการตั้ง Tag เป็น Audio
+        GameObject audioObj = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObj != null)
+        {
+            audioManager = audioObj.GetComponent<Audio_Manager>();
+        }
+    }
+
     private void OnEnable()
     {
         // เรียกทุกครั้งที่ Timeline เปิด BoxText
@@ -105,9 +123,21 @@ public class DialogueManager : MonoBehaviour
         isTyping = true;
         dialogueText.text = "";
 
+        int charCount = 0;
         foreach (char letter in text.ToCharArray())
         {
             dialogueText.text += letter;
+
+            // เล่นเสียงตามความถี่ที่ตั้งไว้ (ข้ามช่องว่าง)
+            if (letter != ' ')
+            {
+                charCount++;
+                if (charCount % soundFrequency == 0 && audioManager != null && typingSound != null)
+                {
+                    audioManager.PlaySFX(typingSound);
+                }
+            }
+
             yield return new WaitForSeconds(typingSpeed);
         }
 
