@@ -593,6 +593,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5bd79667e936244bda7e028040d8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 2055948836}
+  dialogueText: {fileID: 926883286}
+  dialogueLines:
+  - dialogueText: "\u0E2D\u0E30\u0E44\u0E23\u0E27\u0E30\u0E40\u0E19\u0E35\u0E48\u0E22\u0E22.."
+  typingSpeed: 0.1
+  advanceMode: 1
+  autoAdvanceDelay: 1
+  typingSound: {fileID: 0}
+  soundFrequency: 2
 --- !u!114 &381412260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1743,6 +1752,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5bd79667e936244bda7e028040d8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 851905240}
+  dialogueText: {fileID: 313011212}
+  dialogueLines:
+  - dialogueText: "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E01\u0E35\u0E49\u0E21\u0E31\u0E19\u0E04\u0E37\u0E2D\u0E15\u0E31\u0E27\u0E2D\u0E30\u0E44\u0E23\u0E19\u0E30\u0E19\u0E31\u0E49\u0E19.."
+  - dialogueText: "\u0E15\u0E49\u0E2D\u0E07\u0E44\u0E1B\u0E16\u0E32\u0E21 \"\u0E14\u0E47\u0E2D\u0E01\u0E40\u0E15\u0E2D\u0E23\u0E4C
+      \u0E40\u0E14\u0E35\u0E22\" \u0E25\u0E30"
+  - dialogueText: "\u0E27\u0E48\u0E32\u0E40\u0E01\u0E34\u0E14\u0E2D\u0E30\u0E44\u0E23\u0E02\u0E36\u0E49\u0E19\u0E01\u0E31\u0E1A\u0E2B\u0E21\u0E39\u0E48\u0E1A\u0E49\u0E32\u0E19\u0E19\u0E35\u0E49"
+  typingSpeed: 0.1
+  advanceMode: 1
+  autoAdvanceDelay: 1
+  typingSound: {fileID: 0}
+  soundFrequency: 2
 --- !u!114 &1098087995
 MonoBehaviour:
   m_ObjectHideFlags: 0
