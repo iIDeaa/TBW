@@ -10,6 +10,10 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
+
+    [Header("Footstep")]
+    [SerializeField] private float footstepDelay = 0.3f;
+    private float footstepTimer;
     
     
     
@@ -26,6 +30,8 @@ public class PlayerMove : MonoBehaviour
             rb.velocity = moveInput * moveSpeed;
         else
             rb.velocity = Vector2.zero;
+
+        Footstep();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -37,6 +43,28 @@ public class PlayerMove : MonoBehaviour
         }
 
         moveInput = context.ReadValue<Vector2>();
+    }
+
+
+    private void Footstep()
+    {
+        // ถ้าไม่ได้เดิน ไม่ต้องทำอะไร
+        if (moveInput == Vector2.zero)
+        {
+            footstepTimer = 0;
+            return;
+        }
+
+
+        footstepTimer -= Time.fixedDeltaTime;
+
+
+        if (footstepTimer <= 0)
+        {
+            AudioManager.Instance.PlaySFX("Footstep");
+
+            footstepTimer = footstepDelay;
+        }
     }
     
 }

@@ -28,6 +28,7 @@ public class TrashManager : MonoBehaviour
     private bool isPlaying = false;
     public TrashResultUI resultUI;
     
+    
 
     private void Awake()
     {
@@ -103,7 +104,7 @@ public class TrashManager : MonoBehaviour
             InventoryManager.Instance.AddItem(rewardItem);
         }
 
-        Debug.Log("ได้รับ " + rewardAmount + " ชิ้น");
+        Debug.Log("Get " + rewardAmount + " ");
     }
     
 
@@ -134,6 +135,7 @@ public class TrashManager : MonoBehaviour
         isPlaying = false;
 
         GiveReward();
+        ZoneDataManager.Instance.DecreaseProgress(0.1f);
 
         resultUI.ShowResult(
             elapsedTime,

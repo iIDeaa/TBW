@@ -22,14 +22,19 @@ public class MinigameManager : MonoBehaviour
 
     public void StartMinigame(string sceneName)
     {
-        Debug.Log("FadeManager: " + FadeManager.Instance);
-
         if (FadeManager.Instance == null)
-        {
             return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            SpawnManager.Instance.SaveSpawn(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,
+                player.transform.position
+            );
         }
 
-        returnScene = SceneManager.GetActiveScene().name;
         FadeManager.Instance.FadeToScene(sceneName);
     }
 
@@ -44,13 +49,25 @@ public class MinigameManager : MonoBehaviour
 
         FadeManager.Instance.Fade(() =>
         {
-            SceneManager.LoadScene(returnScene);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.LoadScene(SpawnManager.Instance.ReturnScene);
+
             done = true;
         });
 
-        // รอจนกว่าจะโหลดเสร็จ
         yield return new WaitUntil(() => done);
 
         OnMinigameEnd?.Invoke(success);
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            player.transform.position = SpawnManager.Instance.ReturnPosition;
+        }
     }
 }

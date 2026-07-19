@@ -27,6 +27,8 @@ public class NPCtalk : MonoBehaviour
     public DialogueData defaultDialogue;
     [Header("Portrait")]
     public Image portraitImage;
+    [Header("TellImage")]
+    public Image tellImage;
 
     private bool playerInRange;
     private bool isTalking;
@@ -223,6 +225,21 @@ public class NPCtalk : MonoBehaviour
 
         nameText.text = currentLines[currentLine].speaker;
         portraitImage.sprite = currentLines[currentLine].portrait;
+        if (tellImage != null)
+        {
+            Sprite image = currentLines[currentLine].tellimage;
+
+            if (image != null)
+            {
+                tellImage.sprite = image;
+                tellImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                tellImage.sprite = null;
+                tellImage.gameObject.SetActive(false);
+            }
+        }
 
         foreach (char c in currentLines[currentLine].text)
         {

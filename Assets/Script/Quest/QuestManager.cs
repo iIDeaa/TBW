@@ -189,6 +189,16 @@ public class QuestManager : MonoBehaviour
             StartQuest(current);
         }
     }
+    public bool IsQuestActive(string questID)
+    {
+        Quest quest = GetQuest(questID);
+
+        if (quest == null)
+            return false;
+
+
+        return quest.state == QuestState.InProgress;
+    }
     
     
     void OnEnable()

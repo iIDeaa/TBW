@@ -3,24 +3,26 @@ using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour
 {
-    public Image fillImage;
+    [SerializeField] private Image fillImage;
 
-    public float decreaseAmount = 0.1f; 
-
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        RefreshBar();
+    }
+
+    public void RefreshBar()
+    {
+        fillImage.fillAmount = ZoneDataManager.Instance.GetCurrentProgress();
+    }
+
+    public void Decrease(float amount)
+    {
+        ZoneDataManager.Instance.DecreaseProgress(amount);
+        RefreshBar();
+
+        if (fillImage.fillAmount <= 0f)
         {
-            fillImage.fillAmount -= decreaseAmount;
-
-            
-            fillImage.fillAmount = Mathf.Clamp01(fillImage.fillAmount);
-
-            
-            if (fillImage.fillAmount <= 0)
-            {
-                Debug.Log("Progress หมดแล้ว!");
-            }
+            Debug.Log("Zone Complete");
         }
     }
 }

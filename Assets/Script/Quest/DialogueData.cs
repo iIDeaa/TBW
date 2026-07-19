@@ -10,7 +10,8 @@ public class DialogueData : ScriptableObject
     {
         public string speaker;
         [TextArea] public string text;
-        public Sprite portrait; 
+        public Sprite portrait;
+        public Sprite tellimage; 
     }
 
     public Line[] lines;
