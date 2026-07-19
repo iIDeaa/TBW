@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/(6)Cutscene_Car.unity
     guid: a64ed38243fc37b45b506b248f53247e
   - enabled: 1
-    path: "Assets/Scenes/(\u0E387).unity"
+    path: Assets/Scenes/(7)WhenHome.unity
     guid: 45d32d793813c624db0774d5fe12697c
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
