@@ -1,30 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
 
-public class StartMenuManager : MonoBehaviour
+public class MainSetting : MonoBehaviour
 {
-    [Header("Scene Settings")]
-    public string gameSceneName = "SampleScene"; 
+    public GameObject settingSubPage;   
+    public GameObject commandSubPage; 
 
-    public void StartGame()
+    public GameObject settingsPanel;
+    void Start()
     {
-        SceneManager.LoadScene(gameSceneName);
+        settingsPanel.SetActive(false);
+    }
+    public void OpenSettings()
+    {
+        settingsPanel.SetActive(true);
     }
 
-    public void OpenSetting()
+    public void CloseSettings()
     {
-        if (settingPanel != null)
-        {
-            settingPanel.SetActive(true);
-        }
+        settingsPanel.SetActive(false);
     }
 
-    public void ExitGame()
+    public void ShowSetting()
     {
-        Application.Quit();
+        settingSubPage.SetActive(true);
+        commandSubPage.SetActive(false);
+    }
 
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+    public void ShowCommand()
+    {
+        settingSubPage.SetActive(false);
+        commandSubPage.SetActive(true);
     }
 }
