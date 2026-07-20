@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainSetting : MonoBehaviour
+public class SettingMain : MonoBehaviour
 {
     public GameObject settingSubPage;   
     public GameObject commandSubPage; 
