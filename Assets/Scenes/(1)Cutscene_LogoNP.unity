@@ -1193,8 +1193,8 @@ MonoBehaviour:
   currentDirector: {fileID: 701420072}
   nextMode: 1
   nextTimeline: {fileID: 0}
-  nextSceneAsset: {fileID: 102900000, guid: 26e9e0bb1db711e40878bd0636ca4b5d, type: 3}
-  nextSceneName: (2)StartMenu
+  nextSceneAsset: {fileID: 102900000, guid: 223ad2fdddf5add44a89b53d93737d3f, type: 3}
+  nextSceneName: LoadingScene
   delayBeforeNext: 9
 --- !u!4 &1922201576
 Transform:
