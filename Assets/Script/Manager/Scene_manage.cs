@@ -15,9 +15,23 @@ public class Scene_manage : MonoBehaviour
     
   public void OnStartClick()
     {
-        FadeManager.Instance.FadeToScene("SampleScene");
+        QuestManager.Instance.ResetAll(); 
+        InventoryManager.Instance.ClearInventory();
+        ZoneDataManager.Instance.ResetAll();
+        FadeManager.Instance.FadeToScene("DeaTestScene");
         
         
+    }
+    public void OnContinueClick()
+    {
+        if (SaveManager.Instance.HasSave())
+        {
+            SaveManager.Instance.LoadGame();
+        }
+        else
+        {
+            Debug.Log("No save file");
+        }
     }
 
     public void OnExitClick()

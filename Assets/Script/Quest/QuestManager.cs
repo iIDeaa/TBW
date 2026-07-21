@@ -199,6 +199,16 @@ public class QuestManager : MonoBehaviour
 
         return quest.state == QuestState.InProgress;
     }
+    public void ResetAll()
+    {
+        Debug.Log("Reset All Quests");
+
+        currentQuestStep = 1;
+
+        InitializeQuests();
+
+        OnQuestStepChanged?.Invoke(currentQuestStep);
+    }
     
     
     void OnEnable()
