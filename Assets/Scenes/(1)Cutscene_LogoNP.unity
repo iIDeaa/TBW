@@ -357,6 +357,8 @@ MonoBehaviour:
   typingSpeed: 0.1
   advanceMode: 1
   autoAdvanceDelay: 1
+  typingSound: {fileID: 0}
+  soundFrequency: 2
 --- !u!114 &569390922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +510,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1225,8 +1227,8 @@ MonoBehaviour:
   currentDirector: {fileID: 701420072}
   nextMode: 1
   nextTimeline: {fileID: 0}
-  nextSceneAsset: {fileID: 102900000, guid: 26e9e0bb1db711e40878bd0636ca4b5d, type: 3}
-  nextSceneName: (2)StartMenu
+  nextSceneAsset: {fileID: 102900000, guid: 223ad2fdddf5add44a89b53d93737d3f, type: 3}
+  nextSceneName: (2)LoadingScene
   delayBeforeNext: 3
 --- !u!4 &1922201576
 Transform:
