@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Scene_manage : MonoBehaviour
 {
-<<<<<<< HEAD:Assets/Script/Manager/Scene_manage.cs
+
     void Start()
     {
         if (FadeManager.HasInstance())
@@ -16,22 +16,23 @@ public class Scene_manage : MonoBehaviour
     
   public void OnStartClick()
     {
-        FadeManager.Instance.FadeToScene("SampleScene");
-        
-        
-=======
-    Audio_Manager audioManager;
-
-    private void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<Audio_Manager>();
-    }
-
-    public void OnStartClick()
-    {
+        // FadeManager.Instance.FadeToScene("SampleScene");
         SceneManager.LoadScene("(3)World");
->>>>>>> Cxk21_07:Assets/Script/Scene_manage.cs
-    }
+        
+        
+// =======
+//     Audio_Manager audioManager;
+
+//     private void Awake()
+//     {
+//         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<Audio_Manager>();
+//     }
+
+//     public void OnStartClick()
+//     {
+//         SceneManager.LoadScene("(3)World");
+
+   }
 
     public void OnExitClick()
     {
