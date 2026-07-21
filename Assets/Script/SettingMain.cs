@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class SettingMain : MonoBehaviour
 {
+    public GameObject settingspanel; 
     public GameObject settingSubPage;   
     public GameObject commandSubPage; 
-
-    public GameObject settingsPanel;
+  
     void Start()
     {
-        settingsPanel.SetActive(false);
+        settingspanel.SetActive(false);
+        settingSubPage.SetActive(false);
     }
     public void OpenSettings()
     {
-        settingsPanel.SetActive(true);
+        settingspanel.SetActive(true);
+        settingSubPage.SetActive(true);
     }
 
     public void CloseSettings()
     {
-        settingsPanel.SetActive(false);
+        settingspanel.SetActive(false);
+        settingSubPage.SetActive(false);
     }
 
     public void ShowSetting()
