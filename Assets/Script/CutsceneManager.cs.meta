@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Script/BootstrapLoader.cs.meta
+guid: 32d894726c58c464ab72d96d03727a08
+========
+guid: 9aa49e8332deca544a26675775dff3cc
+>>>>>>>> Cxk21_07:Assets/Script/CutsceneManager.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

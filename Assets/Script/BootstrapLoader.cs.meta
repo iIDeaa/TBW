@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Script/BootstrapLoader.cs.meta
 guid: 28b4ddf7ec6d7d744bd7b6c1759b2d2f
+========
+guid: 9aa49e8332deca544a26675775dff3cc
+>>>>>>>> Cxk21_07:Assets/Script/CutsceneManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

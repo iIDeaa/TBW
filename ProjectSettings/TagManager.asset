@@ -4,9 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - NPC
   - Item
   - Interactable
+=======
+  - Audio
+>>>>>>> Cxk21_07
   layers:
   - Default
   - TransparentFX
@@ -45,6 +49,7 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Ground
+<<<<<<< HEAD
     uniqueID: 1176704931
     locked: 0
   - name: WalkInfront
@@ -61,4 +66,10 @@ TagManager:
     locked: 0
   - name: Decorate
     uniqueID: 1803233857
+=======
+    uniqueID: 580475371
+    locked: 0
+  - name: Sky
+    uniqueID: 2275179891
+>>>>>>> Cxk21_07
     locked: 0
