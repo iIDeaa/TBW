@@ -15,47 +15,23 @@ EditorBuildSettings:
     path: Assets/Scenes/(3)StartMenu.unity
     guid: 26e9e0bb1db711e40878bd0636ca4b5d
   - enabled: 1
-    path: Assets/Scenes/(3)World.unity
-    guid: ea02794079868a141a189463843d5af2
+    path: Assets/Scenes/(4)CutScene_World.unity
+    guid: 886f2039fac4eae4d9429ed622a6d7d4
   - enabled: 1
-    path: Assets/Scenes/(4)Cutscene_GameStart.unity
-    guid: a1337fff1bef4664ba40e8aa38cb789b
+    path: Assets/Scenes/(5)Cutscene_GameStart.unity
+    guid: 9cb3ab80ce7da194caa15901f74fba1d
   - enabled: 1
-    path: Assets/Scenes/(5)Cutscene_Car.unity
-    guid: 1e070aae8b0b1354db0b0b948163929a
+    path: Assets/Scenes/(6)Cutscene_Car.unity
+    guid: a64ed38243fc37b45b506b248f53247e
   - enabled: 1
-    path: Assets/Scenes/(6)Cut_At_vilige.unity
-    guid: 39efdd0d2e820394cade6fc417cba55c
+    path: Assets/Scenes/(7)WhenHome.unity
+    guid: 45d32d793813c624db0774d5fe12697c
   - enabled: 1
-    path: Assets/Scenes/(7) Village.unity
-    guid: b8a123c3edb9aed40a000f52796a1258
+    path: Assets/Scenes/Lab.unity
+    guid: d1b258eb25a35814aa1366d5098f48e5
   - enabled: 1
-    path: Assets/Scenes/(8) Village.unity
-    guid: 077e36aa3954bef48af846cc28f2852f
-  - enabled: 1
-    path: Assets/Scenes/(9) Dr.Dear.unity
-    guid: feae30a75a5b2f64bbf3d090f1eba5d6
-  - enabled: 1
-    path: Assets/Scenes/(10) InHouse_Dr.Dear.unity
-    guid: a330b488523c4424aac53f7088c9f18a
-  - enabled: 1
-    path: Assets/Scenes/(11) MapTrash.unity
-    guid: b6d9268971b17474c9363316f1c8058d
-  - enabled: 1
-    path: Assets/Scenes/(12) PlantTree.unity
-    guid: c616219c871e9ee47b9b10d4133b3c3c
-  - enabled: 1
-    path: Assets/Scenes/(13) Solacell.unity
-    guid: d8792f70116a48144a757b02d6318044
-  - enabled: 1
-    path: Assets/Scenes/(14) FinalBoss.unity
-    guid: a10ecc0096806464ebb3219e40e853e7
-  - enabled: 1
-    path: Assets/Scenes/(15) Finalll.unity
-    guid: dd5e7fc4b6e8ae24fa03ae0048568fc3
-  - enabled: 1
-    path: Assets/Scenes/(16) Final.unity
-    guid: 21ba88e4a78b7864e84dea4f66a6eb8b
+    path: Assets/Scenes/MapSelect_001.unity
+    guid: 51c8250b9c27e89478b8cba6bffb1fcf
   - enabled: 1
     path: Assets/Scenes/Bootstrap.unity
     guid: 85fef949b8ad83347b7a43c694aeca95
@@ -66,6 +42,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MapSelect.unity
     guid: 26bb0edefcbcbef46a6a46ce6c606124
   - enabled: 1
+    path: Assets/Scenes/TrashZone.unity
+    guid: b853425df64febd4f91939b3b33292bd
+  - enabled: 1
+    path: Assets/Scenes/TestMinigame.unity
+    guid: 95fa4e5b1beaebc4a9f0e7be8c92d1e8
+  - enabled: 1
     path: Assets/Scenes/PlantMiniGame.unity
     guid: 2772ea0994e490e4bbd7df281afc9915
   - enabled: 1
@@ -74,7 +56,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test_idle.unity
     guid: f7b8e43418f0caf45ab49af5685ecb32
-  - enabled: 1
-    path: Assets/Scenes/TestMinigame.unity
-    guid: 95fa4e5b1beaebc4a9f0e7be8c92d1e8
   m_configObjects: {}

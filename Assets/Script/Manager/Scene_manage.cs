@@ -25,7 +25,7 @@ public class Scene_manage : MonoBehaviour
             QuestManager.Instance.ResetAll(); 
             InventoryManager.Instance.ClearInventory();
             ZoneDataManager.Instance.ResetAll();
-            SceneManager.LoadScene("(3)World");
+            SceneManager.LoadScene("(4)CutScene_World");
         }
     public void OnContinueClick()
     {

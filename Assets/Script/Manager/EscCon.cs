@@ -30,6 +30,6 @@ public class EscCon : MonoBehaviour
     }
     public void OnExitClick()
     {
-        SceneManager.LoadScene("StartMenu");
+        SceneManager.LoadScene("(3)StartMenu");
     }
 }
