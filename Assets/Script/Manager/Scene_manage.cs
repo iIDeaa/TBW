@@ -6,19 +6,37 @@ using UnityEngine.SceneManagement;
 public class Scene_manage : MonoBehaviour
 {
 
-    void Start()
-    {
-        if (FadeManager.HasInstance())
-        {
-            StartCoroutine(FadeManager.Instance.FadeInRoutine());
-        }
-    }
+    // void Start()
+    // {
+    //     if (FadeManager.HasInstance())
+    //     {
+    //         StartCoroutine(FadeManager.Instance.FadeInRoutine());
+    //     }
+    // }
     
-  public void OnStartClick()
+//   public void OnStartClick()
+//     {
+//         FadeManager.Instance.FadeToScene("SampleScene");
+        
+        
+//     }
+    public void OnStartClick()
+        {
+            QuestManager.Instance.ResetAll(); 
+            InventoryManager.Instance.ClearInventory();
+            ZoneDataManager.Instance.ResetAll();
+            SceneManager.LoadScene("(3)World");
+        }
+    public void OnContinueClick()
     {
-        FadeManager.Instance.FadeToScene("SampleScene");
-        
-        
+        if (SaveManager.Instance.HasSave())
+        {
+            SaveManager.Instance.LoadGame();
+        }
+        else
+        {
+            Debug.Log("No save file");
+        }
     }
 
     public void OnExitClick()
