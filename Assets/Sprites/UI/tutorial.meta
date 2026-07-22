@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sprites/UI/tutorial.meta
 guid: 34fba1f462d17c548ac831f1a1016a5b
+=======
+guid: c36066a3127ac834fb564cdc43c50eb7
+>>>>>>> origin/BackUP_Cutscene_23-16:Assets/image/UI/tutorial.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
