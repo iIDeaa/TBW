@@ -16,23 +16,10 @@ public class Scene_manage : MonoBehaviour
     
   public void OnStartClick()
     {
-        // FadeManager.Instance.FadeToScene("SampleScene");
-        SceneManager.LoadScene("(3)World");
+        FadeManager.Instance.FadeToScene("SampleScene");
         
         
-// =======
-//     Audio_Manager audioManager;
-
-//     private void Awake()
-//     {
-//         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<Audio_Manager>();
-//     }
-
-//     public void OnStartClick()
-//     {
-//         SceneManager.LoadScene("(3)World");
-
-   }
+    }
 
     public void OnExitClick()
     {

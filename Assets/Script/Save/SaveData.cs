@@ -7,6 +7,7 @@ public class SaveData
     public List<string> finishedQuests;
     public List<string> inProgressQuests;
     public List<string> completedQuests;
+    public List<float> zoneProgress;
     public string currentScene;
     public List<string> itemIDs;
     public List<int> itemAmounts;

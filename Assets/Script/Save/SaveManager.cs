@@ -66,6 +66,7 @@ public class SaveManager : MonoBehaviour
         data.questStep = QuestManager.Instance.currentQuestStep;
         data.finishedQuests = QuestManager.Instance.GetFinishedQuestIDs();
         data.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        data.zoneProgress = ZoneDataManager.Instance.GetAllProgress();
 
         GameObject player = GameObject.FindWithTag("Player");
 
@@ -127,6 +128,7 @@ public class SaveManager : MonoBehaviour
     {
         QuestManager.Instance.currentQuestStep = data.questStep;
         QuestManager.Instance.LoadFinishedQuests(data.finishedQuests);
+        ZoneDataManager.Instance.LoadProgress(data.zoneProgress);
         
 
         InventoryManager.Instance.isLoading = true;
@@ -151,6 +153,12 @@ public class SaveManager : MonoBehaviour
 
         // 🔥 [เพิ่ม] รีเฟรช UI ทีเดียว
         InventoryManager.Instance.ForceRefreshUI();
+        ProgressBar[] bars = FindObjectsOfType<ProgressBar>();
+
+        foreach (var bar in bars)
+        {
+            bar.RefreshBar();
+        }
         
         StartCoroutine(SetPlayerPosition(data));
         

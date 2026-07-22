@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoneDataManager : MonoBehaviour
@@ -37,5 +38,28 @@ public class ZoneDataManager : MonoBehaviour
     {
         zoneProgress[currentZone] -= amount;
         zoneProgress[currentZone] = Mathf.Clamp01(zoneProgress[currentZone]);
+    }
+
+
+    public List<float> GetAllProgress()
+    {
+        return new List<float>(zoneProgress);
+    }
+
+  
+    public void LoadProgress(List<float> data)
+    {
+        if (data == null || data.Count == 0) return;
+
+        zoneProgress = data.ToArray();
+    }
+    public void ResetAll()
+    {
+        for (int i = 0; i < zoneProgress.Length; i++)
+        {
+            zoneProgress[i] = 1f; 
+        }
+
+        currentZone = 0;
     }
 }

@@ -66,7 +66,7 @@ EditorBuildSettings:
     path: Assets/Scenes/PlantMiniGame.unity
     guid: 2772ea0994e490e4bbd7df281afc9915
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/DeaTestScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Test_idle.unity
