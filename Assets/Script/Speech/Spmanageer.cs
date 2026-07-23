@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class Spmanageer : MonoBehaviour
 {
     public TMP_Text targetTextUI;
     public TMP_Text recognizedTextUI;

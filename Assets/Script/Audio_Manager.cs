@@ -26,4 +26,16 @@ public class Audio_Manager : MonoBehaviour
     {
         SFXSource.PlayOneShot(clip);
     }
+
+    public void PlayButtonSFX()
+    {
+        if (Setting_but != null)
+        {
+            PlaySFX(Setting_but);
+        }
+        else
+        {
+            Debug.LogWarning("Setting_but AudioClip is not assigned in Audio_Manager.");
+        }
+    }
 }
