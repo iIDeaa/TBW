@@ -9,6 +9,6 @@ public class MapPortalTrigger : MonoBehaviour
     {
         if (!other.CompareTag(playerTag)) return;
 
-        FadeManager.Instance.FadeToScene(mapSceneName); 
+        FadeManager.Instance.FadeToScene(mapSceneName); // 🔥 ใช้ตรงนี้
     }
 }

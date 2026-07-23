@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
         {
             panel.SetActive(false);
         }
-        // ZoneDataManager.Instance.SetCurrentZone(index);
+        ZoneDataManager.Instance.SetCurrentZone(index);
         zonePanels[index].SetActive(true);
     }
 }
