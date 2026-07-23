@@ -135,7 +135,7 @@ public class TrashManager : MonoBehaviour
         isPlaying = false;
 
         GiveReward();
-        ZoneDataManager.Instance.DecreaseProgress(0.4f);
+        ZoneDataManager.Instance.DecreaseProgress(0.1f);
 
         resultUI.ShowResult(
             elapsedTime,

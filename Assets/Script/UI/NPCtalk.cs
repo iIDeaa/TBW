@@ -81,7 +81,7 @@ public class NPCtalk : MonoBehaviour
         currentLine = 0;
 
         dialoguePanel.SetActive(true);
-        FindObjectOfType<PlayerMovements>().canMove = false;
+        FindObjectOfType<PlayerMove>().canMove = false;
 
         DialogueData dialogueToUse = null;
         
@@ -155,11 +155,7 @@ public class NPCtalk : MonoBehaviour
                     StartCoroutine(StartMinigameAfterDialogue(currentQuest));
                     IEnumerator StartMinigameAfterDialogue(QuestData quest)
                     {
-                        Debug.Log("Waiting dialogue end");
-
                         yield return new WaitUntil(() => !isTalking);
-
-                        Debug.Log("Start Minigame : " + quest.minigameId);
 
                         MinigameManager.Instance.StartMinigame(quest.minigameId);
                     }
@@ -292,7 +288,7 @@ public class NPCtalk : MonoBehaviour
         isTalking = false;
         dialoguePanel.SetActive(false);
 
-        FindObjectOfType<PlayerMovements>().canMove = true;
+        FindObjectOfType<PlayerMove>().canMove = true;
 
         
        
