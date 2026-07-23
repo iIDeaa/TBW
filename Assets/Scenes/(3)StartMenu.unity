@@ -1765,19 +1765,7 @@ MonoBehaviour:
   m_Value: 0.01
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SubSetting, Assembly-CSharp
-        m_MethodName: SetSFXVolume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &124294073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,7 +2507,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 942580017}
         m_TargetAssemblyTypeName: SubSetting, Assembly-CSharp
         m_MethodName: ChangeFullscreen
         m_Mode: 0
@@ -2531,12 +2519,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 455289353}
         m_TargetAssemblyTypeName: Audio_Manager, Assembly-CSharp
         m_MethodName: PlaySFX
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 4575725ef4da87447b87257d2fe7321c, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: abf3fcba267b95942979e703b28c2f1c, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3169,19 +3157,7 @@ MonoBehaviour:
   m_Value: 0.01
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SubSetting, Assembly-CSharp
-        m_MethodName: SetMusicVolume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &542109358
 GameObject:
   m_ObjectHideFlags: 0
@@ -4209,7 +4185,7 @@ AudioSource:
   m_GameObject: {fileID: 731902523}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2157536667423410, guid: 0ea287fa014a80c448f6bf7cbe386587, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5851,8 +5827,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f377a879da2fa4abb7294b699e1730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Resulution_dropdown: {fileID: 0}
-  Fullscreenop: {fileID: 0}
+  Resulution_dropdown: {fileID: 1435915430}
+  Fullscreenop: {fileID: 452182923}
+  myMixer: {fileID: 24100000, guid: 0ea287fa014a80c448f6bf7cbe386587, type: 2}
+  masterSlider: {fileID: 1826755674}
+  musicSlider: {fileID: 507038183}
+  sfxSlider: {fileID: 92716919}
 --- !u!1 &965769867
 GameObject:
   m_ObjectHideFlags: 0
@@ -8097,7 +8077,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 942580017}
         m_TargetAssemblyTypeName: SubSetting, Assembly-CSharp
         m_MethodName: ChangeResolution
         m_Mode: 0
@@ -8109,12 +8089,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 455289353}
         m_TargetAssemblyTypeName: Audio_Manager, Assembly-CSharp
         m_MethodName: PlaySFX
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 4575725ef4da87447b87257d2fe7321c, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: abf3fcba267b95942979e703b28c2f1c, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -8266,7 +8246,7 @@ AudioSource:
   m_GameObject: {fileID: 1490433450}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1768345351864961739, guid: 0ea287fa014a80c448f6bf7cbe386587, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -9842,19 +9822,7 @@ MonoBehaviour:
   m_Value: 0.01
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SubSetting, Assembly-CSharp
-        m_MethodName: SetMasterVolume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1847062400
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,15 +12,21 @@ public class ProgressBar : MonoBehaviour
 
     public void RefreshBar()
     {
-        fillImage.fillAmount = ZoneDataManager.Instance.GetCurrentProgress();
+        if (fillImage != null && ZoneDataManager.Instance != null)
+        {
+            fillImage.fillAmount = ZoneDataManager.Instance.GetCurrentProgress();
+        }
     }
 
     public void Decrease(float amount)
     {
-        ZoneDataManager.Instance.DecreaseProgress(amount);
+        if (ZoneDataManager.Instance != null)
+        {
+            ZoneDataManager.Instance.DecreaseProgress(amount);
+        }
         RefreshBar();
 
-        if (fillImage.fillAmount <= 0f)
+        if (fillImage != null && fillImage.fillAmount <= 0f)
         {
             Debug.Log("Zone Complete");
         }

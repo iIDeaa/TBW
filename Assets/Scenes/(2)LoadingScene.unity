@@ -814,7 +814,7 @@ MonoBehaviour:
   frames:
   - {fileID: 21300000, guid: d85763eed845773479f55605c522c386, type: 3}
   - {fileID: 21300000, guid: f090e9376ab42fa4780bdc8163cecce9, type: 3}
-  framesPerSecond: 12
+  framesPerSecond: 5
   loop: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

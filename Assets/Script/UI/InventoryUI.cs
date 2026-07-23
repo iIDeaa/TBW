@@ -17,7 +17,14 @@ public class InventoryUI : MonoBehaviour
     {
         if (inventory == null)
             inventory = InventoryManager.Instance;
-            for (int i = 0; i < inventory.maxSlots; i++)
+
+        if (inventory == null)
+        {
+            Debug.LogWarning("InventoryManager.Instance is null, skipping slot initialization in Awake.");
+            return;
+        }
+
+        for (int i = 0; i < inventory.maxSlots; i++)
         {
             SlotUi slot = Instantiate(slotPrefab, slotParent);
             uiSlots.Add(slot);
