@@ -31,7 +31,7 @@ public class FadeManager : MonoBehaviour
     void Start()
     {
         if (fadeImage != null)
-            fadeImage.color = new Color(0, 0, 0, 1);
+            fadeImage.color = new Color(0, 0, 0, 0);
     }
 
     

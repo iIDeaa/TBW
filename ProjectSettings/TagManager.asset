@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Audio
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -40,4 +42,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 961722517
+    locked: 0
+  - name: Player
+    uniqueID: 3440387027
+    locked: 0
+  - name: Colli
+    uniqueID: 242137257
     locked: 0

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SettingMain : MonoBehaviour
 {
-    
     public GameObject settingspanel; 
     public GameObject settingSubPage;   
     public GameObject commandSubPage; 
@@ -13,20 +12,17 @@ public class SettingMain : MonoBehaviour
     {
         settingspanel.SetActive(false);
         settingSubPage.SetActive(false);
-        commandSubPage.SetActive(false);
     }
     public void OpenSettings()
     {
         settingspanel.SetActive(true);
         settingSubPage.SetActive(true);
-        commandSubPage.SetActive(false);
     }
 
     public void CloseSettings()
     {
         settingspanel.SetActive(false);
         settingSubPage.SetActive(false);
-        commandSubPage.SetActive(false);
     }
 
     public void ShowSetting()

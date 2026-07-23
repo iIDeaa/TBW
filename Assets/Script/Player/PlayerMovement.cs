@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovements : MonoBehaviour
 {
     // Start is called before the first frame update
     private float moveSpeed = 5f;
+    public bool canMove = true;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
@@ -17,14 +18,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        rb.velocity = moveInput * moveSpeed;
+        if (canMove)
+            rb.velocity = moveInput * moveSpeed;
+        else
+            rb.velocity = Vector2.zero;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
         animator.SetBool("IsWalking", true);
+        if (!canMove)
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
         if (context.canceled)
         {
             animator.SetBool("IsWalking", false);

@@ -356,6 +356,8 @@ MonoBehaviour:
   typingSpeed: 0.1
   advanceMode: 1
   autoAdvanceDelay: 1
+  typingSound: {fileID: 0}
+  soundFrequency: 2
 --- !u!114 &244573691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3744,6 +3746,8 @@ MonoBehaviour:
   typingSpeed: 0.1
   advanceMode: 1
   autoAdvanceDelay: 1
+  typingSound: {fileID: 0}
+  soundFrequency: 2
 --- !u!114 &854663485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9598,7 +9602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1603814147}
-  - component: {fileID: 1603814146}
+  - component: {fileID: 1603814148}
   m_Layer: 0
   m_Name: CutsceneManager
   m_TagString: Untagged
@@ -9606,24 +9610,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1603814146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603814145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa49e8332deca544a26675775dff3cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentDirector: {fileID: 280995938}
-  nextMode: 1
-  nextTimeline: {fileID: 0}
-  nextSceneAsset: {fileID: 102900000, guid: 45d32d793813c624db0774d5fe12697c, type: 3}
-  nextSceneName: "(\u0E386)"
-  delayBeforeNext: 1
 --- !u!4 &1603814147
 Transform:
   m_ObjectHideFlags: 0
@@ -9639,6 +9625,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1603814148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603814145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d894726c58c464ab72d96d03727a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDirector: {fileID: 280995938}
+  nextMode: 1
+  nextTimeline: {fileID: 0}
+  nextSceneAsset: {fileID: 102900000, guid: 45d32d793813c624db0774d5fe12697c, type: 3}
+  nextSceneName: (7)WhenHome
+  delayBeforeNext: 1
 --- !u!1 &1687171203
 GameObject:
   m_ObjectHideFlags: 0

@@ -1570,7 +1570,7 @@ MonoBehaviour:
   dialogueLines:
   - dialogueText: "\u0E40\u0E2B\u0E49\u0E22\u0E22\u0E22\u0E22\u0E22\u0E22\u0E22"
   - dialogueText: "\u0E08\u0E33\u0E44\u0E14\u0E49\u0E27\u0E48\u0E32\u0E40\u0E23\u0E32\u0E40\u0E04\u0E22\u0E0B\u0E37\u0E49\u0E2D"
-  typingSpeed: 0.1
+  typingSpeed: 0.05
   advanceMode: 1
   autoAdvanceDelay: 1
   typingSound: {fileID: 8300000, guid: b2b09fa713f74d545b55487c8ce6fac1, type: 3}
@@ -1801,7 +1801,7 @@ MonoBehaviour:
   - dialogueText: "\u0E22\u0E31\u0E07 \u0E22\u0E31\u0E07 ......."
   - dialogueText: "\u0E22\u0E31\u0E07 \u0E44\u0E21\u0E48\u0E1A\u0E2D\u0E01\u0E2D\u0E35\u0E01
       !!!!!!!!"
-  typingSpeed: 0.1
+  typingSpeed: 0.05
   advanceMode: 1
   autoAdvanceDelay: 1
   typingSound: {fileID: 8300000, guid: b2b09fa713f74d545b55487c8ce6fac1, type: 3}
@@ -1921,7 +1921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneAsset: {fileID: 102900000, guid: a64ed38243fc37b45b506b248f53247e, type: 3}
-  nextLevelName: (5)Cutscene_Car
+  nextLevelName: (6)Cutscene_Car
 --- !u!61 &1104139980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4757,7 +4757,7 @@ MonoBehaviour:
   - dialogueText: "\u0E2A\u0E25\u0E32\u0E01\u0E19\u0E33\u0E42\u0E0A\u0E04 \u0E40\u0E25\u0E02\u0E17\u0E35\u0E48\u0E2D\u0E2D\u0E01\u0E44\u0E14\u0E49\u0E41\u0E01\u0E48
       ......"
   - dialogueText: "\u0E44\u0E14\u0E49\u0E41\u0E01\u0E48 ........"
-  typingSpeed: 0.1
+  typingSpeed: 0.05
   advanceMode: 1
   autoAdvanceDelay: 1
   typingSound: {fileID: 8300000, guid: b2b09fa713f74d545b55487c8ce6fac1, type: 3}
@@ -5197,7 +5197,7 @@ GameObject:
   - component: {fileID: 1890555705}
   - component: {fileID: 1890555704}
   - component: {fileID: 1890555703}
-  - component: {fileID: 1890555702}
+  - component: {fileID: 1890555708}
   - component: {fileID: 1890555701}
   - component: {fileID: 1890555707}
   m_Layer: 0
@@ -5228,18 +5228,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1890555702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890555700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9e608bd335c25449b6d389ce8ae6ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1890555703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5267,8 +5255,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1890555702}
-        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
+      - m_Target: {fileID: 1890555708}
+        m_TargetAssemblyTypeName: PlayerMovements, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -5473,6 +5461,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1890555708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890555700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0503e1ea95c844790edf3197f76d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1931735948
 GameObject:
   m_ObjectHideFlags: 0
@@ -5776,7 +5776,7 @@ MonoBehaviour:
   dialogueLines:
   - dialogueText: "23567 \u0E04\u0E23\u0E31\u0E1A\u0E1A\u0E1A!!!! "
   - dialogueText: "\u0E02\u0E2D\u0E41\u0E2A\u0E14\u0E07\u0E04\u0E27\u0E32\u0E21\u0E22\u0E34\u0E19\u0E14\u0E35\u0E01\u0E31\u0E1A\u0E04\u0E19\u0E17\u0E35\u0E48\u0E16\u0E39\u0E01\n\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25\u0E14\u0E49\u0E27\u0E22\u0E19\u0E30\u0E04\u0E23\u0E31\u0E1A"
-  typingSpeed: 0.1
+  typingSpeed: 0.05
   advanceMode: 1
   autoAdvanceDelay: 1
   typingSound: {fileID: 8300000, guid: b2b09fa713f74d545b55487c8ce6fac1, type: 3}
@@ -6037,7 +6037,7 @@ MonoBehaviour:
   - dialogueText: "\u0E2A\u0E1A\u0E32\u0E22\u0E25\u0E30\u0E40\u0E23\u0E32"
   - dialogueText: "\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E2D\u0E22\u0E39\u0E48\u0E1A\u0E49\u0E32\u0E19\u0E19\u0E2D\u0E01\u0E14\u0E35\u0E01\u0E27\u0E48\u0E32\n\u0E04\u0E34\u0E14\u0E16\u0E36\u0E07\u0E04\u0E23\u0E2D\u0E1A\u0E04\u0E23\u0E31\u0E27\u0E41\u0E25\u0E49\u0E27\u0E27
       ><"
-  typingSpeed: 0.1
+  typingSpeed: 0.05
   advanceMode: 1
   autoAdvanceDelay: 1
   typingSound: {fileID: 8300000, guid: b2b09fa713f74d545b55487c8ce6fac1, type: 3}
