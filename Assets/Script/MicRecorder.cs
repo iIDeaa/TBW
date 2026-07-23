@@ -14,6 +14,11 @@ public class MicRecorder : MonoBehaviour
     private bool isRecording = false;
     private int lastSamplePosition = 0;
 
+    public bool IsRecording()
+    {
+        return isRecording;
+    }
+
     void Start()
     {
         if (Microphone.devices.Length > 0)

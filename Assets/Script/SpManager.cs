@@ -11,7 +11,7 @@ public class SpManager : MonoBehaviour
     public TextComparer comparer;
     public GoogleSpeechClient googleSpeech;
 
-    string targetText = "เปิดประตู";
+    string targetText = "ควย";
     string currentText = "";
 
     void Start()
@@ -36,6 +36,9 @@ public class SpManager : MonoBehaviour
 
     void StartListening()
     {
+        // รีเซ็ตข้อมูลคำพูดและ Session เดิมก่อนทุกครั้ง
+        ResetSpeech();
+
         recognizedTextUI.text = "Listening...";
         resultTextUI.text = "";
         currentText = "";
@@ -51,7 +54,12 @@ public class SpManager : MonoBehaviour
 
     void OnSpeechText(string text)
     {
+        // ป้องกันผลลัพธ์ที่ตอบกลับมาดีเลย์จากฝั่งเซิร์ฟเวอร์มาทับตอนที่กดปล่อยปุ่มหยุดพูดไปแล้ว
+        if (mic != null && !mic.IsRecording()) return;
         if (string.IsNullOrEmpty(text)) return;
+
+        // ล้างช่องว่างที่อาจจะเกิดจากการแปลภาษา
+        text = text.Trim();
 
         recognizedTextUI.text = "You said: " + text;
         currentText = text;
