@@ -188,7 +188,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -626,7 +626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
+  m_AnchoredPosition: {x: 1925, y: 1070}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1052028282
@@ -641,13 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5bd79667e936244bda7e028040d8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 0}
-  dialogueText: {fileID: 48448648}
-  dialogueLines:
-  - dialogueText: "\u0E42\u0E25\u0E01\u0E40\u0E1B\u0E47\u0E19\u0E2A\u0E34\u0E48\u0E07\u0E17\u0E35\u0E48\u0E19\u0E48\u0E32\u0E2D\u0E22\u0E39\u0E48......"
-  typingSpeed: 0.1
-  advanceMode: 1
-  autoAdvanceDelay: 1
 --- !u!114 &1052028283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,7 +860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
+  m_AnchoredPosition: {x: 1925, y: 1070}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1483442958
@@ -903,13 +896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5bd79667e936244bda7e028040d8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 0}
-  dialogueText: {fileID: 578203082}
-  dialogueLines:
-  - dialogueText: "\u0E08\u0E19\u0E01\u0E23\u0E30\u0E17\u0E31\u0E48\u0E07"
-  typingSpeed: 0.1
-  advanceMode: 1
-  autoAdvanceDelay: 1
 --- !u!114 &1483442960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,12 +1234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa49e8332deca544a26675775dff3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDirector: {fileID: 1491688414}
-  nextMode: 1
-  nextTimeline: {fileID: 0}
-  nextSceneAsset: {fileID: 102900000, guid: a1337fff1bef4664ba40e8aa38cb789b, type: 3}
-  nextSceneName: (4)Cutscene_GameStart
-  delayBeforeNext: 3
 --- !u!4 &1872538803
 Transform:
   m_ObjectHideFlags: 0
