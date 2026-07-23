@@ -43,8 +43,8 @@ public class TrashManager : MonoBehaviour
 
         SpawnNextRound();
 
-        elapsedTime = 0f;
-        isPlaying = true;
+        
+        isPlaying = false;
     }
     void Update()
     {
@@ -129,6 +129,11 @@ public class TrashManager : MonoBehaviour
     public void Continue()
     {
         MinigameManager.Instance.EndMinigame(true);
+    }
+    public void StartGame()
+    {
+        elapsedTime = 0f;
+        isPlaying = true;
     }
     void EndGame()
     {

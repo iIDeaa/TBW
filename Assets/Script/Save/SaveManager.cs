@@ -81,7 +81,7 @@ public class SaveManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
-
+        Debug.Log(File.Exists(path));
         Debug.Log("Game Saved");
     }
 
