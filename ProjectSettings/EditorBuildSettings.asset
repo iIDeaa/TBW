@@ -48,6 +48,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TestMinigame.unity
     guid: 95fa4e5b1beaebc4a9f0e7be8c92d1e8
   - enabled: 1
+    path: Assets/Scenes/TrashCollect.unity
+    guid: 4d0b2fb0a5e8e0341a95a50f006fb43e
+  - enabled: 1
     path: Assets/Scenes/PlantMiniGame.unity
     guid: 2772ea0994e490e4bbd7df281afc9915
   - enabled: 1

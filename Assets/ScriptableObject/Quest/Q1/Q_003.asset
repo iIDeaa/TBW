@@ -24,4 +24,4 @@ MonoBehaviour:
   startDialogue: {fileID: 11400000, guid: 9c55f49086e0a574d89d4379417cfa6e, type: 2}
   inProgressDialogue: {fileID: 11400000, guid: ea98781d7aeedc44a8ec0a2d2fda567b, type: 2}
   completeDialogue: {fileID: 11400000, guid: 0e41d319aa422f749994453915413181, type: 2}
-  nextQuestID: 003
+  nextQuestID: 004
