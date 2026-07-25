@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GifPlayer : MonoBehaviour
+public class LoadingGif : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private Sprite[] frames;         // ลากเฟรมทั้งหมดมาวาง

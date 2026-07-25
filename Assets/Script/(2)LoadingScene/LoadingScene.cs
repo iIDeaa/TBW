@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 
-public class LoadingScreen : MonoBehaviour
+public class LoadingScene : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private Image loadingBarFill;        // ตัว bar ที่เลื่อน
