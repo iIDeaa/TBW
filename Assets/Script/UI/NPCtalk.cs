@@ -55,10 +55,7 @@ public class NPCtalk : MonoBehaviour
         if (prompt != null)
             prompt.SetActive(false);
 
-        if (MinigameManager.Instance != null)
-        {
-            MinigameManager.Instance.OnMinigameEnd += OnMinigameFinished;
-        }
+        MinigameManager.Instance.OnMinigameEnd += OnMinigameFinished;
     }
 
     void Update()
