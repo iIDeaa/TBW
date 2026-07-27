@@ -5,29 +5,53 @@ using UnityEngine.SceneManagement;
 
 public class EscCon : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject settingsPanel;
-    // Start is called before the first frame update
-    void Start()
+
+    private GameObject continueButton;
+    private GameObject settingButton;
+    private GameObject exitButton;
+
+    void Awake()
     {
-        settingsPanel.SetActive(false);
+        continueButton = transform.Find("Continue_but")?.gameObject;
+        settingButton = transform.Find("Setting_but")?.gameObject;
+        exitButton = transform.Find("Exit_but")?.gameObject;
     }
-    void Update()
+
+    void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (settingsPanel != null)
         {
             settingsPanel.SetActive(false);
         }
+        SetButtonsActive(true);
     }
+
     public void OpenSettings()
     {
-        settingsPanel.SetActive(true);
+        if (settingsPanel != null)
+        {
+            settingsPanel.SetActive(true);
+        }
+        SetButtonsActive(false);
     }
 
     public void CloseSettings()
     {
-        settingsPanel.SetActive(false);
+        if (settingsPanel != null)
+        {
+            settingsPanel.SetActive(false);
+        }
+        SetButtonsActive(true);
     }
+
+    private void SetButtonsActive(bool active)
+    {
+        if (continueButton != null) continueButton.SetActive(active);
+        if (settingButton != null) settingButton.SetActive(active);
+        if (exitButton != null) exitButton.SetActive(active);
+    }
+
     public void OnExitClick()
     {
         SceneManager.LoadScene("(3)StartMenu");

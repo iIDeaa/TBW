@@ -26,8 +26,22 @@ public class MenuCon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            settingsPanel.SetActive(false);
-            EscCanvas.SetActive(!EscCanvas.activeSelf);
+            if (settingsPanel.activeSelf)
+            {
+                EscCon escCon = EscCanvas.GetComponent<EscCon>();
+                if (escCon != null)
+                {
+                    escCon.CloseSettings();
+                }
+                else
+                {
+                    settingsPanel.SetActive(false);
+                }
+            }
+            else
+            {
+                EscCanvas.SetActive(!EscCanvas.activeSelf);
+            }
         }
     }
     public void CloseEsc()
