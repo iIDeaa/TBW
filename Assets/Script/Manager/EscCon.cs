@@ -5,19 +5,67 @@ using UnityEngine.SceneManagement;
 
 public class EscCon : MonoBehaviour
 {
+    public GameObject Menu;
+    public GameObject EscPanel;
     public GameObject settingsPanel;
-
+    public GameObject CommandListPage;
+    
     private GameObject continueButton;
     private GameObject settingButton;
     private GameObject exitButton;
 
-    void Awake()
+    void Start()
     {
-        continueButton = transform.Find("Continue_but")?.gameObject;
-        settingButton = transform.Find("Setting_but")?.gameObject;
-        exitButton = transform.Find("Exit_but")?.gameObject;
+        EscPanel.SetActive(false);
+
+        continueButton = EscPanel.transform.Find("Continue_but")?.gameObject;
+        settingButton = EscPanel.transform.Find("Setting_but")?.gameObject;
+        exitButton = EscPanel.transform.Find("Exit_but")?.gameObject;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Menu != null && Menu.activeSelf)
+                return;
+
+            if (CommandListPage.activeSelf)
+            {
+                CommandListPage.SetActive(false);
+                SetButtonsActive(true);
+                return;
+            }
+            if (IsSettingsOpen())
+            {
+                CloseSettings();
+                return;
+            }
+
+            bool isESCActive = EscPanel.activeSelf;
+
+            EscPanel.SetActive(!isESCActive);
+            SetButtonsActive(!isESCActive);
+
+            Time.timeScale = isESCActive ? 1f : 0f;
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if ((Menu != null && Menu.activeSelf))
+                return;
+
+            EscPanel.SetActive(true);
+
+            SetButtonsActive(false);
+
+            if (settingsPanel != null)
+                settingsPanel.SetActive(false);
+
+            CommandListPage.SetActive(true);
+
+            Time.timeScale = 0f;
+        }
+    }
     void OnEnable()
     {
         if (settingsPanel != null)
@@ -25,6 +73,12 @@ public class EscCon : MonoBehaviour
             settingsPanel.SetActive(false);
         }
         SetButtonsActive(true);
+    }
+    
+
+    public bool IsSettingsOpen()
+    {
+        return settingsPanel != null && settingsPanel.activeSelf;
     }
 
     public void OpenSettings()
@@ -42,6 +96,8 @@ public class EscCon : MonoBehaviour
         {
             settingsPanel.SetActive(false);
         }
+
+        EscPanel.SetActive(true);
         SetButtonsActive(true);
     }
 
@@ -50,6 +106,12 @@ public class EscCon : MonoBehaviour
         if (continueButton != null) continueButton.SetActive(active);
         if (settingButton != null) settingButton.SetActive(active);
         if (exitButton != null) exitButton.SetActive(active);
+    }
+
+    public void CloseEsc()
+    {
+        EscPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void OnExitClick()

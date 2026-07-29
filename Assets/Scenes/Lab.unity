@@ -122,54 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &570269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 570271}
-  - component: {fileID: 570270}
-  m_Layer: 0
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &570270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf1abd865ac2ae4c8235dcc69425662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 0ea287fa014a80c448f6bf7cbe386587, type: 2}
-  masterSlider: {fileID: 864567012}
-  musicSlider: {fileID: 19558804}
-  sfxSlider: {fileID: 701059227}
---- !u!4 &570271
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570269}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7404325, y: 0.74373704, z: -0.022066914}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2117739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3702,7 +3654,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1029459752}
+      - m_Target: {fileID: 1110026745}
         m_TargetAssemblyTypeName: EscCon, Assembly-CSharp
         m_MethodName: OnExitClick
         m_Mode: 1
@@ -3903,7 +3855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &193028757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5925,8 +5877,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1207725381}
-        m_TargetAssemblyTypeName: MenuCon, Assembly-CSharp
+      - m_Target: {fileID: 1110026745}
+        m_TargetAssemblyTypeName: EscCon, Assembly-CSharp
         m_MethodName: CloseEsc
         m_Mode: 1
         m_Arguments:
@@ -10302,8 +10254,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1207725386}
-        m_TargetAssemblyTypeName: SettingMain, Assembly-CSharp
+      - m_Target: {fileID: 1110026745}
+        m_TargetAssemblyTypeName: EscCon, Assembly-CSharp
         m_MethodName: CloseSettings
         m_Mode: 1
         m_Arguments:
@@ -12397,14 +12349,13 @@ GameObject:
   - component: {fileID: 1029459751}
   - component: {fileID: 1029459754}
   - component: {fileID: 1029459753}
-  - component: {fileID: 1029459752}
   m_Layer: 5
   m_Name: EscPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1029459751
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12412,7 +12363,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029459750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12425,22 +12376,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 5, y: -6.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1029459752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029459750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c874ed1d8de20a941a38410e93e7b937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingsPanel: {fileID: 0}
 --- !u!114 &1029459753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12870,6 +12808,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099823917}
   m_CullTransparentMesh: 1
+--- !u!1 &1110026744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110026746}
+  - component: {fileID: 1110026745}
+  m_Layer: 0
+  m_Name: ESCManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1110026745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110026744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c874ed1d8de20a941a38410e93e7b937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Menu: {fileID: 906259983}
+  EscPanel: {fileID: 1029459750}
+  settingsPanel: {fileID: 1895511132}
+  CommandListPage: {fileID: 764018167}
+--- !u!4 &1110026746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110026744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1174.2064, y: 1044.8862, z: -14.122445}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1112520471
 GameObject:
   m_ObjectHideFlags: 0
@@ -14291,8 +14277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734e975f2406e02459b9168e23ffed6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EscPanel: {fileID: 1029459750}
   menuCanvas: {fileID: 906259983}
-  EscCanvas: {fileID: 1029459750}
   settingsPanel: {fileID: 1895511132}
   questUI: {fileID: 1099823918}
 --- !u!114 &1207725382
@@ -14393,9 +14379,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f520b2cbe425cd4696737a40429c907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingspanel: {fileID: 193028756}
-  settingSubPage: {fileID: 400796589}
-  commandSubPage: {fileID: 738918263}
+  settingspanel: {fileID: 1895511132}
+  settingSubPage: {fileID: 2085641641}
+  commandSubPage: {fileID: 764018167}
 --- !u!114 &1207725387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16768,7 +16754,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1029459752}
+      - m_Target: {fileID: 1110026745}
         m_TargetAssemblyTypeName: EscCon, Assembly-CSharp
         m_MethodName: OpenSettings
         m_Mode: 1
@@ -20492,7 +20478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1895511133
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23403,7 +23389,7 @@ SceneRoots:
   - {fileID: 384031201}
   - {fileID: 6998954874179828162}
   - {fileID: 764586670}
-  - {fileID: 570271}
   - {fileID: 1091390991}
   - {fileID: 443754614}
   - {fileID: 263469488}
+  - {fileID: 1110026746}

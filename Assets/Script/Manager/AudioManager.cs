@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class Sound
@@ -21,6 +23,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixer mixer;
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
@@ -41,6 +45,12 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            // สมัครรับ Event เมื่อเปลี่ยนซีน เพื่อให้ตั้งค่าเสียงใหม่ทุกครั้งที่โหลดซีนเสร็จ
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            
+            // โหลดและนำการตั้งค่าทั้งหมดมาใช้ตอนเปิดเกมครั้งแรก
+            ApplyAllSettings();
         }
         else
         {
@@ -50,6 +60,56 @@ public class AudioManager : MonoBehaviour
 
 
         CreateDictionary();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // เมื่อเปลี่ยนซีน ให้ Apply เสียงซ้ำอีกครั้ง เพื่อป้องกัน AudioMixer คืนค่าเริ่มต้น
+        ApplyAudioSettings();
+    }
+
+    public void ApplyAllSettings()
+    {
+        ApplyAudioSettings();
+        ApplyDisplaySettings();
+    }
+
+    public void ApplyAudioSettings()
+    {
+        if (mixer == null) return;
+
+        float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        mixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(master, 0.0001f)) * 20);
+        mixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(music, 0.0001f)) * 20);
+        mixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(sfx, 0.0001f)) * 20);
+    }
+
+    public void ApplyDisplaySettings()
+    {
+        bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+        Screen.fullScreen = isFullscreen;
+
+        if (PlayerPrefs.HasKey("Resolution"))
+        {
+            int resIndex = PlayerPrefs.GetInt("Resolution");
+            Resolution[] resolutions = Screen.resolutions;
+            if (resIndex >= 0 && resIndex < resolutions.Length)
+            {
+                Resolution res = resolutions[resIndex];
+                Screen.SetResolution(res.width, res.height, isFullscreen);
+            }
+        }
     }
 
 
