@@ -27,12 +27,11 @@ public class SettingMain : MonoBehaviour
     {
         if (settingspanel == null || commandSubPage == null) return;
 
-        // ถ้าเปิดหน้า CommandList อยู่แล้ว ให้ปิด
         if (settingspanel.activeSelf && commandSubPage.activeSelf)
         {
             CloseSettings();
         }
-        else // ถ้ายังไม่เปิด หรือเปิดหน้าอื่นอยู่ ให้สลับมาหน้า CommandList
+        else 
         {
             settingspanel.SetActive(true);
             if (settingSubPage != null) settingSubPage.SetActive(false);

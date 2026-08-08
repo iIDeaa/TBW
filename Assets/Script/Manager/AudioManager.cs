@@ -46,10 +46,8 @@ public class AudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             
-            // สมัครรับ Event เมื่อเปลี่ยนซีน เพื่อให้ตั้งค่าเสียงใหม่ทุกครั้งที่โหลดซีนเสร็จ
             SceneManager.sceneLoaded += OnSceneLoaded;
             
-            // โหลดและนำการตั้งค่าทั้งหมดมาใช้ตอนเปิดเกมครั้งแรก
             ApplyAllSettings();
         }
         else
@@ -72,7 +70,6 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // เมื่อเปลี่ยนซีน ให้ Apply เสียงซ้ำอีกครั้ง เพื่อป้องกัน AudioMixer คืนค่าเริ่มต้น
         ApplyAudioSettings();
     }
 
@@ -136,12 +133,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
-
-    // =========================
-    // SFX
-    // =========================
-
     public void PlaySFX(string soundName)
     {
         if (!soundDictionary.TryGetValue(soundName, out Sound sound))
@@ -178,10 +169,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-
-    // =========================
-    // MUSIC
-    // =========================
 
     public void PlayMusic(AudioClip clip, bool loop = true)
     {

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Audio
   - NPC
+  - Core
   layers:
   - Default
   - TransparentFX

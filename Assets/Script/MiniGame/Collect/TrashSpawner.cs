@@ -8,7 +8,7 @@ public class TrashSpawner : MonoBehaviour
     public GameObject trashPrefab;
 
     public int totalTrash = 20;
-
+    public int currentCore = 0;
 
     private int remainTrash;
     private int collectedTrash;
@@ -65,20 +65,35 @@ public class TrashSpawner : MonoBehaviour
 
     public void TrashCollected()
     {
+        
         remainTrash--;
 
         collectedTrash++;
 
-
+        TrashCoreManager.Instance.AddTrash();
         TrashMiniGameUI.Instance.UpdateTrash(
             collectedTrash,
             totalTrash
         );
 
 
-        if(remainTrash <= 0)
+        if(remainTrash <= 0 && currentCore <= 0)
         {
             TrashMiniGameManager.Instance.EndGame();
         }
+    }
+
+    public void SpawnCore(GameObject corePrefab)
+    {
+        Bounds bounds = area.bounds;
+
+        Vector2 pos = new Vector2(
+            Random.Range(bounds.min.x, bounds.max.x),
+            Random.Range(bounds.min.y, bounds.max.y)
+        );
+
+        Instantiate(corePrefab, pos, Quaternion.identity);
+
+        currentCore++;
     }
 }

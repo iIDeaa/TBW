@@ -66,9 +66,12 @@ public class SliderController : MonoBehaviour
         Move();
 
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (TrashMiniGameManager.Instance.currentCore == null)
         {
-            Check();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Check();
+            }
         }
     }
 
@@ -111,40 +114,44 @@ public class SliderController : MonoBehaviour
 
     void Check()
     {
-        float x =
-            pointer.anchoredPosition.x;
+        float x = pointer.anchoredPosition.x;
 
+        float min = greenZone.anchoredPosition.x - greenZone.rect.width / 2;
+        float max = greenZone.anchoredPosition.x + greenZone.rect.width / 2;
 
-
-        float min =
-            greenZone.anchoredPosition.x -
-            greenZone.rect.width / 2;
-
-
-
-        float max =
-            greenZone.anchoredPosition.x +
-            greenZone.rect.width / 2;
-
-
-
-        if(x >= min && x <= max)
+        if (x >= min && x <= max)
         {
             success++;
+
             TrashMiniGameUI.Instance.UpdateHit(success);
             TrashMiniGameManager.Instance.AddCorrect();
 
+            // 🔥 ส่งผลไป Manager
+            TrashMiniGameManager.Instance.OnSliderHit();
 
-            if(success >= 3)
+            // =========================
+            // 🟢 กรณี Trash
+            // =========================
+            if (TrashMiniGameManager.Instance.currentCore == null)
             {
-                playing = false;
+                if (success >= 3)
+                {
+                    playing = false;
+                    gameObject.SetActive(false);
 
-
-                gameObject.SetActive(false);
-
-
-                TrashMiniGameManager.Instance.FinishTrash();
-                return;
+                    TrashMiniGameManager.Instance.FinishTrash();
+                    return;
+                }
+            }
+            // =========================
+            // 🔴 กรณี Core
+            // =========================
+            else
+            {
+                // ❗ Core ไม่มีทางจบด้วย slider
+                // รี success เพื่อกัน stack
+                success = 0;
+                TrashMiniGameUI.Instance.UpdateHit(0);
             }
         }
         else
@@ -154,7 +161,6 @@ public class SliderController : MonoBehaviour
             success = 0;
             TrashMiniGameUI.Instance.UpdateHit(0);
         }
-
 
         RandomGreenZone();
     }
