@@ -6,21 +6,14 @@ public class TrashMiniGameManager : MonoBehaviour
 
     [Header("Reference")]
     public TrashSpawner trashSpawner;
-    public TrashMinigameResultUI resultUI;
-    public SliderController sliderController;
     public ComboSys comboSys;
+    public SliderController sliderController;
     public PlayerMovements playerMove;
-
-    [Header("Result")]
-    public float elapsedTime;
-    public int correctCount;
-    public int wrongCount;
-
-    private bool isPlaying;
-
-    // 🔥 แยก Target
-    private Trash currentTrash;
     public CarbonCore currentCore;
+
+    private Trash currentTrash;
+
+    public bool usedCombo = false;
 
     private void Awake()
     {
@@ -29,157 +22,126 @@ public class TrashMiniGameManager : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
-    }
-
-    private void Update()
-    {
-        if (isPlaying)
-        {
-            elapsedTime += Time.deltaTime;
-        }
-    }
-
-    // =============================
-    // 🎮 เริ่มเกมหลัก
-    // =============================
-    public void StartGame()
-    {
-        elapsedTime = 0;
-        correctCount = 0;
-        wrongCount = 0;
-
-        isPlaying = true;
-
-        trashSpawner.StartRound();
+        if (trashSpawner != null)
+            trashSpawner.StartRound();
     }
 
     // =============================
     // 🎮 เริ่ม Minigame
     // =============================
-    public void StartTrashGame(object target)
+    public void StartTrashGame(Trash trash)
     {
-        Debug.Log("เปิดมินิเกม");
+        Debug.Log("เริ่ม Minigame");
 
-        currentTrash = null;
-        currentCore = null;
+        currentTrash = trash;
 
-        // 🔥 แยกประเภท
-        if (target is Trash)
-        {
-            currentTrash = (Trash)target;
+        usedCombo = false;
 
-            // 🟢 Trash → ใช้ Slider
-            sliderController.gameObject.SetActive(true);
-            sliderController.StartGame();
+        // เปิด Combo
+        comboSys.gameObject.SetActive(true);
+        comboSys.onComboSuccess = OnComboSuccess;
 
-            comboSys.gameObject.SetActive(false);
-        }
-        else if (target is CarbonCore)
-        {
-            currentCore = (CarbonCore)target;
+        // เปิด Slider
+        sliderController.StartGame();
 
-            // 🔴 Core → ใช้ Combo เป็นหลัก
-            comboSys.gameObject.SetActive(true);
-
-            // 👉 เปิด slider ได้ แต่ฆ่าไม่ได้
-            sliderController.gameObject.SetActive(true);
-            sliderController.StartGame();
-        }
-        playerMove.canMove = false; // ตอนเริ่ม
-
-    // =============================
-    // 🟢 Slider โดน (เรียกจาก SliderController)
-    // =============================
-    public void OnSliderHit()
-    {
-        if (currentCore != null)
-        {
-            currentCore.TakeSliderDamage(5);
-        }
-        else if (currentTrash != null)
-        {
-            AddCorrect();
-        }
+        // ล็อกการเดิน
+        playerMove.canMove = false;
     }
 
-    // =============================
-    // 🔴 Combo Success
-    // =============================
     public void OnComboSuccess()
     {
-        Debug.Log("💥 Combo สำเร็จ!");
+        Debug.Log("💥 COMBO FINISH (Instant)");
+
+        // ปิดทุกอย่างก่อน
+        comboSys.gameObject.SetActive(false);
+        sliderController.gameObject.SetActive(false);
+
+        // เก็บขยะทันที
+        if (currentTrash != null)
+        {
+            currentTrash.Collect();
+            currentTrash = null;
+        }
 
         if (currentCore != null)
         {
-            currentCore.OnComboSuccess(); // 💥 ฆ่าจริง
+            currentCore.OnComboSuccess();
+
+            EndGame();
         }
-        else if (currentTrash != null)
-        {
-            FinishTrash();
-        }
+
+        // ปลดล็อกการเดิน
+        playerMove.canMove = true;
+
+        // รี UI
+        TrashMiniGameUI.Instance.UpdateHit(0);
+
+        //  รี state
+        usedCombo = false;
+        
     }
 
-    // =============================
-    // ⚠️ Combo Fail
-    // =============================
+    //Combo พลาด
     public void OnComboFail()
     {
-        Debug.Log("❌ Combo พลาด!");
-
         if (currentCore != null)
         {
             currentCore.OnComboFail();
         }
     }
 
-    // =============================
-    // 🧹 จบ Trash (เท่านั้น)
+    // 🧹 จบเกม
     // =============================
     public void FinishTrash()
     {
-        // ปิด UI
-        comboSys.gameObject.SetActive(false);
-        sliderController.gameObject.SetActive(false);
+        Debug.Log("💥 เก็บขยะสำเร็จ");
 
-        playerMove.canMove = true;
-
-        // 🟢 Trash เท่านั้น
         if (currentTrash != null)
         {
             currentTrash.Collect();
-            TrashCoreManager.Instance.AddTrash();
             currentTrash = null;
         }
 
-        // ❗ Core ห้ามตายตรงนี้
+        sliderController.gameObject.SetActive(false);
+        comboSys.gameObject.SetActive(false);
+
+        playerMove.canMove = true;
+
+        // รี UI
+        TrashMiniGameUI.Instance.UpdateHit(0);
     }
 
-    // =============================
-    public void AddCorrect()
-    {
-        correctCount++;
-    }
-
-    public void AddWrong()
-    {
-        wrongCount++;
-    }
-
-    // =============================
+    //End
     public void EndGame()
     {
-        isPlaying = false;
+        Debug.Log("End Game");
 
-        resultUI.ShowResult(
-            elapsedTime,
-            correctCount,
-            wrongCount
-        );
+        // ถ้าคุณมี UI result ก็ใส่ตรงนี้
+    // เช่น resultUI.Show();
     }
 
     public void Continue()
     {
-        MinigameManager.Instance.EndMinigame(true);
+        Debug.Log("Continue");
+
+        // ปิด UI / กลับไปเกมหลัก
+        playerMove.canMove = true;
     }
+
+    public void StartCoreGame(CarbonCore core)
+    {
+        currentCore = core;
+
+        comboSys.gameObject.SetActive(true);
+        comboSys.onComboSuccess = OnComboSuccess;
+        comboSys.onComboFail = OnComboFail; // 🔥 สำคัญ
+
+        sliderController.StartGame();
+
+        playerMove.canMove = false;
+    }
+
+    public void AddCorrect() { }
+    public void AddWrong() { }
+    public void OnSliderHit() { }
 }

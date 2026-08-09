@@ -1,35 +1,25 @@
 using UnityEngine;
 
-
 public class Trash : MonoBehaviour
 {
     private bool collected;
 
-
-
     public void Interact()
     {
-        if(collected)
+        if (collected)
             return;
-
 
         TrashMiniGameManager.Instance.StartTrashGame(this);
     }
 
-
-
-
     public void Collect()
     {
-        if(collected)
+        if (collected)
             return;
-
 
         collected = true;
 
-
-        TrashSpawner.Instance.TrashCollected();
-
+        TrashCoreManager.Instance.TrashCollected();
 
         Destroy(gameObject);
     }

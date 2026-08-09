@@ -91,10 +91,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1014b66580dd7fd4cb35e5bdac29575d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coreType: 1
   maxTrash: 15
   spawnInterval: 5
-  trashPrefab: {fileID: 8324365307113609126}
-  coreType: 1
+  trashPrefab: {fileID: 5057259151469912624, guid: e1c47e37fdcb9494abc3112953d62dd4, type: 3}
+  maxHP: 100
+  regenRate: 1
 --- !u!212 &2599310346596992082
 SpriteRenderer:
   m_ObjectHideFlags: 0

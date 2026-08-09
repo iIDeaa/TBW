@@ -4,7 +4,15 @@ public class TrashCoreManager : MonoBehaviour
 {
     public static TrashCoreManager Instance;
 
-    public int collectedTrash = 0;
+    [Header("Trash")]
+    public int remainTrash;
+    public int collectedTrash;
+    public int totalTrash;
+
+    [Header("Core")]
+    public int currentCore;
+
+    [Header("Spawn")]
     public float coreChance = 0f;
 
     public GameObject weakCorePrefab;
@@ -15,11 +23,26 @@ public class TrashCoreManager : MonoBehaviour
         Instance = this;
     }
 
-    public void AddTrash()
+    // =========================
+    // 🧹 เรียกตอนเก็บขยะ
+    // =========================
+    public void TrashCollected()
     {
+        remainTrash--;
         collectedTrash++;
 
-        // 🔥 ระบบสะสมโอกาส
+        TrashMiniGameUI.Instance.UpdateTrash(collectedTrash, totalTrash);
+
+        AddTrashChance();
+
+        CheckEndGame();
+    }
+
+    // =========================
+    // 🔥 เพิ่มโอกาส Core
+    // =========================
+    void AddTrashChance()
+    {
         if (collectedTrash == 2) coreChance += 10f;
         else if (collectedTrash == 5) coreChance += 20f;
         else if (collectedTrash == 8) coreChance += 20f;
@@ -42,8 +65,33 @@ public class TrashCoreManager : MonoBehaviour
             else
                 TrashSpawner.Instance.SpawnCore(strongCorePrefab);
 
+            currentCore++; // 🔥 เพิ่ม Core
+
             coreChance = 0;
             collectedTrash = 0;
+        }
+    }
+
+    // =========================
+    // 💥 Core ตาย
+    // =========================
+    public void RemoveCore()
+    {
+        currentCore--;
+
+        CheckEndGame();
+    }
+
+    // =========================
+    // 🎯 เช็คจบเกม
+    // =========================
+    public void CheckEndGame()
+    {
+        if (remainTrash <= 0 && currentCore <= 0)
+        {
+            Debug.Log("🎉 เกมจบแล้ว!");
+
+            TrashMiniGameManager.Instance.EndGame();
         }
     }
 }

@@ -70,7 +70,7 @@ public class TrashSpawner : MonoBehaviour
 
         collectedTrash++;
 
-        TrashCoreManager.Instance.AddTrash();
+        TrashCoreManager.Instance.TrashCollected();
         TrashMiniGameUI.Instance.UpdateTrash(
             collectedTrash,
             totalTrash
