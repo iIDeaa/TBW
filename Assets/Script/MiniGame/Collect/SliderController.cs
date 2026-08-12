@@ -82,14 +82,13 @@ public class SliderController : MonoBehaviour
 
         if (x >= min && x <= max)
         {
+            TrashMiniGameManager.Instance.AddCorrect();
             Debug.Log("✔ HIT");
 
-            // 🔥 ถ้าเป็น Core
             if (TrashMiniGameManager.Instance.currentCore != null)
             {
                 TrashMiniGameManager.Instance.currentCore.TakeSliderDamage(5);
 
-                // ❗ Core ห้ามสะสม success
                 success = 0;
                 TrashMiniGameUI.Instance.UpdateHit(0);
 
@@ -114,6 +113,8 @@ public class SliderController : MonoBehaviour
         else
         {
             Debug.Log("❌ MISS");
+
+            TrashMiniGameManager.Instance.AddWrong();
 
             success = 0;
             TrashMiniGameUI.Instance.UpdateHit(0);

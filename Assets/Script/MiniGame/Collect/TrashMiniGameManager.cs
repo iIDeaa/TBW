@@ -19,6 +19,8 @@ public class TrashMiniGameManager : MonoBehaviour
 
     private Trash currentTrash;
 
+    private bool isPlaying;
+
     public bool usedCombo = false;
 
     private void Awake()
@@ -26,10 +28,31 @@ public class TrashMiniGameManager : MonoBehaviour
         Instance = this;
     }
 
+        private void Update()
+    {
+        if(isPlaying)
+        {
+            elapsedTime += Time.deltaTime;
+        }
+    }
+
+    public void StartGame()
+    {
+        elapsedTime = 0;
+
+        correctCount = 0;
+
+        wrongCount = 0;
+
+
+        isPlaying = true;
+
+
+        trashSpawner.StartRound();
+    }
     private void Start()
     {
-        if (trashSpawner != null)
-            trashSpawner.StartRound();
+        StartGame();
     }
 
 
@@ -41,8 +64,7 @@ public class TrashMiniGameManager : MonoBehaviour
 
         usedCombo = false;
 
-        comboSys.gameObject.SetActive(true);
-        comboSys.onComboSuccess = OnComboSuccess;
+        comboSys.gameObject.SetActive(false);
 
         sliderController.StartGame();
 
@@ -74,7 +96,6 @@ public class TrashMiniGameManager : MonoBehaviour
         TrashMiniGameUI.Instance.UpdateHit(0);
 
         usedCombo = false;
-        
     }
 
     public void OnComboFail()
@@ -106,6 +127,7 @@ public class TrashMiniGameManager : MonoBehaviour
     //End
     public void EndGame()
     {
+        isPlaying = false;
         Debug.Log("End Game");
         Debug.Log($"TIME: {elapsedTime} | CORRECT: {correctCount} | WRONG: {wrongCount}");
 
@@ -129,14 +151,18 @@ public class TrashMiniGameManager : MonoBehaviour
 
         comboSys.gameObject.SetActive(true);
         comboSys.onComboSuccess = OnComboSuccess;
-        comboSys.onComboFail = OnComboFail; // 🔥 สำคัญ
+        comboSys.onComboFail = OnComboFail; 
 
         sliderController.StartGame();
 
         playerMove.canMove = false;
     }
 
-    public void AddCorrect() { }
-    public void AddWrong() { }
+    public void AddCorrect() {
+        correctCount++;
+    }
+    public void AddWrong() {
+        wrongCount++;
+    }
     public void OnSliderHit() { }
 }
