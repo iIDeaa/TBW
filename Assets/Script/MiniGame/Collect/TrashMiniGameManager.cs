@@ -10,6 +10,12 @@ public class TrashMiniGameManager : MonoBehaviour
     public SliderController sliderController;
     public PlayerMovements playerMove;
     public CarbonCore currentCore;
+    public TrashMinigameResultUI resultUI;
+
+    [Header("Result")]
+    public float elapsedTime;
+    public int correctCount;
+    public int wrongCount;
 
     private Trash currentTrash;
 
@@ -26,9 +32,7 @@ public class TrashMiniGameManager : MonoBehaviour
             trashSpawner.StartRound();
     }
 
-    // =============================
-    // 🎮 เริ่ม Minigame
-    // =============================
+
     public void StartTrashGame(Trash trash)
     {
         Debug.Log("เริ่ม Minigame");
@@ -37,14 +41,11 @@ public class TrashMiniGameManager : MonoBehaviour
 
         usedCombo = false;
 
-        // เปิด Combo
         comboSys.gameObject.SetActive(true);
         comboSys.onComboSuccess = OnComboSuccess;
 
-        // เปิด Slider
         sliderController.StartGame();
 
-        // ล็อกการเดิน
         playerMove.canMove = false;
     }
 
@@ -52,11 +53,9 @@ public class TrashMiniGameManager : MonoBehaviour
     {
         Debug.Log("💥 COMBO FINISH (Instant)");
 
-        // ปิดทุกอย่างก่อน
         comboSys.gameObject.SetActive(false);
         sliderController.gameObject.SetActive(false);
 
-        // เก็บขยะทันที
         if (currentTrash != null)
         {
             currentTrash.Collect();
@@ -67,21 +66,17 @@ public class TrashMiniGameManager : MonoBehaviour
         {
             currentCore.OnComboSuccess();
 
-            EndGame();
+            TrashCoreManager.Instance.CheckEndGameSafe();
         }
 
-        // ปลดล็อกการเดิน
         playerMove.canMove = true;
 
-        // รี UI
         TrashMiniGameUI.Instance.UpdateHit(0);
 
-        //  รี state
         usedCombo = false;
         
     }
 
-    //Combo พลาด
     public void OnComboFail()
     {
         if (currentCore != null)
@@ -90,8 +85,6 @@ public class TrashMiniGameManager : MonoBehaviour
         }
     }
 
-    // 🧹 จบเกม
-    // =============================
     public void FinishTrash()
     {
         Debug.Log("💥 เก็บขยะสำเร็จ");
@@ -107,7 +100,6 @@ public class TrashMiniGameManager : MonoBehaviour
 
         playerMove.canMove = true;
 
-        // รี UI
         TrashMiniGameUI.Instance.UpdateHit(0);
     }
 
@@ -115,16 +107,19 @@ public class TrashMiniGameManager : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("End Game");
+        Debug.Log($"TIME: {elapsedTime} | CORRECT: {correctCount} | WRONG: {wrongCount}");
 
-        // ถ้าคุณมี UI result ก็ใส่ตรงนี้
-    // เช่น resultUI.Show();
+        resultUI.ShowResult(
+            elapsedTime,
+            correctCount,
+            wrongCount
+        );
     }
 
     public void Continue()
     {
         Debug.Log("Continue");
 
-        // ปิด UI / กลับไปเกมหลัก
         playerMove.canMove = true;
     }
 

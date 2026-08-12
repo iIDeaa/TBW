@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Trash : MonoBehaviour
 {
-    private bool collected;
+    public bool isCollected = false;
 
     public void Interact()
     {
-        if (collected)
+        if (isCollected)
             return;
 
         TrashMiniGameManager.Instance.StartTrashGame(this);
@@ -14,13 +14,15 @@ public class Trash : MonoBehaviour
 
     public void Collect()
     {
-        if (collected)
+        if (isCollected)
             return;
 
-        collected = true;
-
-        TrashCoreManager.Instance.TrashCollected();
+        isCollected = true;
 
         Destroy(gameObject);
+
+        TrashCoreManager.Instance.AddTrashChance();
+        TrashCoreManager.Instance.CheckEndGameSafe();
     }
+
 }

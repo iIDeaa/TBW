@@ -1,13 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class TrashCoreManager : MonoBehaviour
 {
     public static TrashCoreManager Instance;
 
-    [Header("Trash")]
-    public int remainTrash;
-    public int collectedTrash;
-    public int totalTrash;
 
     [Header("Core")]
     public int currentCore;
@@ -23,74 +20,58 @@ public class TrashCoreManager : MonoBehaviour
         Instance = this;
     }
 
-    // =========================
-    // 🧹 เรียกตอนเก็บขยะ
-    // =========================
-    public void TrashCollected()
+    public void AddTrashChance()
     {
-        remainTrash--;
-        collectedTrash++;
+        coreChance += 20f;
 
-        TrashMiniGameUI.Instance.UpdateTrash(collectedTrash, totalTrash);
-
-        AddTrashChance();
-
-        CheckEndGame();
-    }
-
-    // =========================
-    // 🔥 เพิ่มโอกาส Core
-    // =========================
-    void AddTrashChance()
-    {
-        if (collectedTrash == 2) coreChance += 10f;
-        else if (collectedTrash == 5) coreChance += 20f;
-        else if (collectedTrash == 8) coreChance += 20f;
-        else if (collectedTrash == 12) coreChance += 20f;
-        else if (collectedTrash >= 15) coreChance = 100f;
-
-        TrySpawnCore();
-    }
-
-    void TrySpawnCore()
-    {
-        float rand = Random.Range(0f, 100f);
-
-        if (rand <= coreChance)
+        if (coreChance >= 100f)
         {
-            int type = Random.Range(0, 100);
-
-            if (type < 50)
-                TrashSpawner.Instance.SpawnCore(weakCorePrefab);
-            else
-                TrashSpawner.Instance.SpawnCore(strongCorePrefab);
-
-            currentCore++; // 🔥 เพิ่ม Core
-
+            SpawnCore();
             coreChance = 0;
-            collectedTrash = 0;
         }
     }
 
-    // =========================
-    // 💥 Core ตาย
-    // =========================
-    public void RemoveCore()
+    void SpawnCore()
     {
-        currentCore--;
+        int type = Random.Range(0, 100);
+
+        GameObject prefab = (type < 50) ? weakCorePrefab : strongCorePrefab;
+
+        TrashSpawner.Instance.SpawnCore(prefab);
+
+        currentCore++;
+    }
+
+    public void CheckEndGameSafe()
+    {
+        StartCoroutine(CheckEndGameDelay());
+    }
+
+    IEnumerator CheckEndGameDelay()
+    {
+        yield return null; 
 
         CheckEndGame();
     }
 
-    // =========================
-    // 🎯 เช็คจบเกม
-    // =========================
+
+    public void RemoveCore()
+    {
+        currentCore--;
+    }
+
     public void CheckEndGame()
     {
-        if (remainTrash <= 0 && currentCore <= 0)
-        {
-            Debug.Log("🎉 เกมจบแล้ว!");
+        int trashCount = FindObjectsOfType<Trash>().Length;
+        int coreCount = FindObjectsOfType<CarbonCore>().Length;
 
+        Debug.Log("=== CHECK END GAME ===");
+        Debug.Log("REAL Trash: " + trashCount);
+        Debug.Log("REAL Core: " + coreCount);
+
+        if (trashCount == 0 && coreCount == 0)
+        {
+            Debug.Log("🎉 END GAME");
             TrashMiniGameManager.Instance.EndGame();
         }
     }

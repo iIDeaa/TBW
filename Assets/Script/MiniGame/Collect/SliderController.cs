@@ -87,7 +87,7 @@ public class SliderController : MonoBehaviour
             // 🔥 ถ้าเป็น Core
             if (TrashMiniGameManager.Instance.currentCore != null)
             {
-                TrashMiniGameManager.Instance.currentCore.TakeSliderDamage();
+                TrashMiniGameManager.Instance.currentCore.TakeSliderDamage(5);
 
                 // ❗ Core ห้ามสะสม success
                 success = 0;

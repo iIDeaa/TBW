@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class CarbonCore : MonoBehaviour
 {
@@ -9,15 +10,12 @@ public class CarbonCore : MonoBehaviour
     public int maxTrash = 8;
     public float spawnInterval = 5f;
     public GameObject trashPrefab;
+
     private bool hasFailedCombo = false;
 
     [Header("HP System")]
     public int maxHP = 100;
     private float currentHP;
-
-    [Header("Regen")]
-    public float regenRate = 1f;
-
 
     private int currentTrash = 0;
     private float timer;
@@ -32,7 +30,6 @@ public class CarbonCore : MonoBehaviour
 
     void Start()
     {
-        // 🔥 ตั้งค่าตามประเภท Core
         if (coreType == CoreType.Weak)
         {
             maxTrash = 8;
@@ -52,7 +49,6 @@ public class CarbonCore : MonoBehaviour
     void Update()
     {
         SpawnTrashLoop();
-        RegenHP();
     }
 
     // =============================
@@ -78,18 +74,16 @@ public class CarbonCore : MonoBehaviour
         float radius = 2f;
 
         Vector2 offset = Random.insideUnitCircle * radius;
-
         Vector2 pos = (Vector2)transform.position + offset;
 
-        // 🔥 กันหลุดแมพ (Clamp)
         pos.x = Mathf.Clamp(pos.x, -10f, 10f);
         pos.y = Mathf.Clamp(pos.y, -10f, 10f);
 
         GameObject trash = Instantiate(trashPrefab, pos, Quaternion.identity);
 
         spawnedTrash.Add(trash);
-
         currentTrash++;
+
     }
 
     // =============================
@@ -98,57 +92,42 @@ public class CarbonCore : MonoBehaviour
     public void Interact()
     {
         Debug.Log("เริ่มสู้ Core");
-
         TrashMiniGameManager.Instance.StartCoreGame(this);
     }
 
     // =============================
-    // 💚 Regen HP
-    // =============================
-    void RegenHP()
-    {
-        if (currentHP < maxHP)
-        {
-            currentHP += regenRate * Time.deltaTime;
-
-            if (currentHP > maxHP)
-                currentHP = maxHP;
-        }
-    }
-
-    // =============================
-    // 🟢 Slider Damage (ฆ่าไม่ได้)
+    // 🟢 Slider Damage
     // =============================
     public void TakeSliderDamage(int damage)
     {
         currentHP -= damage;
 
-        // ❗ ห้ามฆ่า Core ด้วย slider
         if (currentHP <= 1)
-        {
             currentHP = 1;
-        }
+
+        CancelInvoke();
+        Invoke(nameof(RegenFull), 1f);
 
         Debug.Log("โดน Slider | HP: " + Mathf.RoundToInt(currentHP));
     }
 
-    // 🔴 Combo 
+    void RegenFull()
+    {
+        currentHP = maxHP;
+    }
+
     public void OnComboSuccess()
     {
         Debug.Log("💥 Combo สำเร็จ! Core แตก");
-
         DestroyCore();
     }
 
-    // ⚠️ Combo Fail
     public void OnComboFail()
     {
         hasFailedCombo = true;
-
         Debug.Log("⚠️ Core: เคยพลาด Combo");
     }
 
-    // Core แตก
     void DestroyCore()
     {
         float remainPercent = 0f;
@@ -156,39 +135,47 @@ public class CarbonCore : MonoBehaviour
         if (hasFailedCombo)
         {
             if (coreType == CoreType.Weak)
-                remainPercent = 0.4f; // เหลือ 40%
+                remainPercent = 0.4f;
             else
-                remainPercent = 0.5f; // เหลือ 50%
+                remainPercent = 0.5f;
         }
 
-        int remainCount = Mathf.RoundToInt(spawnedTrash.Count * remainPercent);
+        List<GameObject> aliveTrash = new List<GameObject>();
 
-        // 🔥 สุ่มลบ
-        for (int i = spawnedTrash.Count - 1; i >= 0; i--)
+        foreach (var t in spawnedTrash)
         {
-            if (spawnedTrash[i] != null)
+            if (t != null)
             {
-                if (i >= remainCount)
+                Trash trashComp = t.GetComponent<Trash>();
+
+                if (trashComp != null && !trashComp.isCollected)
                 {
-                    Destroy(spawnedTrash[i]);
+                   aliveTrash.Add(t);
                 }
             }
         }
 
+        int remainCount = Mathf.RoundToInt(aliveTrash.Count * remainPercent);
+
+        for (int i = 0; i < aliveTrash.Count; i++)
+        {
+            if (i >= remainCount)
+            {
+                Destroy(aliveTrash[i]);
+            }
+        }
+
         TrashCoreManager.Instance.RemoveCore();
+
         Destroy(gameObject);
+
+        TrashCoreManager.Instance.CheckEndGameSafe();
     }
 
-    public void TakeSliderDamage()
+    IEnumerator CheckAfterFrame()
     {
-        currentHP -= 5;
+        yield return null; // รอ 1 frame
 
-        CancelInvoke();
-        Invoke(nameof(RegenFull), 1f); // 🔥 1 วิ
-    }
-
-    void RegenFull()
-    {
-        currentHP = maxHP;
+        TrashCoreManager.Instance.CheckEndGame();
     }
 }
